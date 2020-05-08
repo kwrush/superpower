@@ -1,0 +1,25 @@
+{
+  "extends": "./paths.json",
+  "compilerOptions": {
+    "target": "es2019",
+    "lib": ["es2017", "dom"],
+    "jsx": "react",
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "downlevelIteration": true,
+    "noEmit": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.tsx", "src/**/*.ts", "*.d.ts"],
+  "exclude": ["node_modules", "build"]
+}
