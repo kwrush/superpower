@@ -14,12 +14,12 @@
     "alwaysStrict": true,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
-    "module": "ESNext",
+    "module": "esnext",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.tsx", "src/**/*.ts", "*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "*.d.ts"],
   "exclude": ["node_modules", "build"]
 }

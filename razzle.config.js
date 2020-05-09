@@ -9,10 +9,10 @@ module.exports = {
         useBabel: true,
         useEslint: true,
         forkTsChecker: {
-          tslint: false,
           tsconfig: './tsconfig.json',
-          typeChecker: true,
+          tslint: false,
           watch: './src',
+          typeChecker: true,
         },
       },
     },
