@@ -3,7 +3,7 @@ import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
-import App from './App';
+import App from './components/App/App';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST!);

@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.header-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.emoji {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
