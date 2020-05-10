@@ -1,4 +1,5 @@
 import React, { FC, useCallback, KeyboardEvent } from 'react';
+import styles from './SearchInput.module.css';
 
 const ENTER_KEY_CODE = 13;
 
@@ -17,8 +18,11 @@ const SearchInput: FC<SearchInputProps> = ({ onSearch }) => {
   );
 
   return (
-    <div>
-      <input placeholder="Search for heros" onKeyUp={handleKeyUp} />
+    <div className={styles['input-wrapper']}>
+      <span className={styles['input-addon']} role="img" aria-label="Muscle">
+        💪
+      </span>
+      <input className={styles.input} placeholder="Search for heros" onKeyUp={handleKeyUp} />
     </div>
   );
 };

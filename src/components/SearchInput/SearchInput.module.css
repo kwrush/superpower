@@ -1,0 +1,33 @@
+.input-wrapper {
+  position: relative;
+  width: 280px;
+  margin: 0 auto;
+  font-size: 1.25rem;
+}
+
+.input-addon {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8px;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 8px 8px 38px;
+  outline: none;
+  border: none;
+  background: none;
+  background-color: #e0e6ec;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.input:focus {
+  box-shadow: 0 0 2px 1px #395abd;
+}
