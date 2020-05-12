@@ -5,8 +5,8 @@ import Grid from '..';
 
 describe('Grid', () => {
   it('should render row of cards', () => {
-    const heros = [
-      {
+    const heros = {
+      '123': {
         id: 1,
         name: 'Spider-Man',
         slug: '123',
@@ -14,7 +14,7 @@ describe('Grid', () => {
           sm: 'img',
         },
       },
-      {
+      '456': {
         id: 2,
         name: 'Batman',
         slug: '456',
@@ -22,7 +22,7 @@ describe('Grid', () => {
           sm: 'img',
         },
       },
-    ];
+    };
 
     const { container } = render(
       <MemoryRouter>
@@ -77,7 +77,7 @@ describe('Grid', () => {
   });
 
   it('should render no result', () => {
-    const { container } = render(<Grid heros={[]} />);
+    const { container } = render(<Grid />);
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div

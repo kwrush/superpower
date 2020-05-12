@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
-import { HeroAPI } from '~app/types/response';
 import HeroCard from '~app/components/HeroCard';
 import styles from './Grid.module.css';
+import { HeroEntity } from '~app/types/app';
 
 interface GridProps {
-  heros: HeroAPI[];
+  heros?: HeroEntity;
 }
 
 const Grid: FC<GridProps> = ({ heros }) => {
+  const herosEntities = heros ? Object.values(heros) : [];
   return (
     <div className={styles.grid}>
-      {heros.length > 0 ? (
-        heros.map(({ id, name, slug, images: { sm } }) => (
+      {herosEntities.length > 0 ? (
+        herosEntities.map(({ id, name, slug, images: { sm } }) => (
           <div key={id} className={styles['grid-item']}>
             <HeroCard heroImage={sm} heroName={name} heroSlug={slug} />
           </div>
