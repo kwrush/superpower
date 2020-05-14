@@ -2,6 +2,8 @@ export const polarToX = (angle: number, distance: number) => Math.cos(angle) * d
 
 export const polarToY = (angle: number, distance: number) => Math.sin(angle) * distance;
 
+export const getAngle = (index: number, totalAngles: number) => (Math.PI * 2 * index) / totalAngles;
+
 export const pointsToPath = (points: number[][]) => {
   let p = '';
   // eslint-disable-next-line no-plusplus
