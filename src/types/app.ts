@@ -1,7 +1,7 @@
 import { HeroAPI } from './response';
 
 export type HeroEntity = Readonly<{
-  [id: string]: HeroAPI;
+  [id: number]: HeroAPI;
 }>;
 
 export interface HeroContextType {

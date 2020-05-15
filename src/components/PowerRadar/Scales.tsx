@@ -27,7 +27,7 @@ const Scales: FC<ScalesProps> = ({ polarNumber, scalesNumber, maxRadius, cx, cy 
   return (
     <>
       {scales.map((scale, index) => (
-        <path key={index} d={scale} fill="#f3f3f5" stroke="#6e698f" strokeWidth="0.2" />
+        <path key={index} d={scale} fill="#1a1c1e" stroke="#6e698f" strokeWidth="0.3" />
       ))}
     </>
   );

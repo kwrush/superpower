@@ -38,8 +38,8 @@ describe('Grid', () => {
           class="grid-item"
         >
           <a
-            class="card"
-            href="/123"
+            class="card card-hover"
+            href="/1"
           >
             <img
               alt="Spider-Man"
@@ -57,8 +57,8 @@ describe('Grid', () => {
           class="grid-item"
         >
           <a
-            class="card"
-            href="/456"
+            class="card card-hover"
+            href="/2"
           >
             <img
               alt="Batman"

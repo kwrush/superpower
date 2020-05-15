@@ -1,5 +1,5 @@
 import request from '../request';
-import { searchSuperHeroByName, searchSuperHeorById } from '../api';
+import { searchSuperHeroByName, searchSuperHeroById } from '../api';
 
 jest.mock('../request');
 
@@ -26,7 +26,7 @@ describe('api', () => {
 
   it('should seach hero by name', async () => {
     const { signal } = abortController;
-    const data = await searchSuperHeorById(123, signal);
+    const data = await searchSuperHeroById(123, signal);
 
     expect(request).toHaveBeenCalledWith('https://superhero-search.p.rapidapi.com/?id=123', signal);
     expect(data).toBe('data');

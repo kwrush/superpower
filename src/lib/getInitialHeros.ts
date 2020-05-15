@@ -1,4 +1,4 @@
-import { searchSuperHeorById } from './api';
+import { searchSuperHeroById } from './api';
 import { HeroAPI } from '~app/types/response';
 
 const HEROS = [
@@ -31,7 +31,7 @@ export const getInitialHeros = (signal: AbortSignal) => {
     // Have to add a delay otherwise http 429 error occurs
     return accumulatedPromise.then((results) =>
       delay(1000).then(() =>
-        searchSuperHeorById(nextHero.id, signal).then((nextHeroData) => [...results, nextHeroData]),
+        searchSuperHeroById(nextHero.id, signal).then((nextHeroData) => [...results, nextHeroData]),
       ),
     );
   }, Promise.resolve([] as HeroAPI[]));

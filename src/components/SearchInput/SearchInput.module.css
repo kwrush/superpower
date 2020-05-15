@@ -23,11 +23,8 @@
   outline: none;
   border: none;
   background: none;
-  background-color: #e0e6ec;
   font-size: 1rem;
   line-height: 1.5;
-}
-
-.input:focus {
-  box-shadow: 0 0 2px 1px #395abd;
+  background-color: #1a1c1e;
+  color: #ffffff;
 }

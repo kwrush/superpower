@@ -12,9 +12,9 @@ const Grid: FC<GridProps> = ({ heros }) => {
   return (
     <div className={styles.grid}>
       {herosEntities.length > 0 ? (
-        herosEntities.map(({ id, name, slug, images: { sm } }) => (
+        herosEntities.map(({ id, name, images: { sm } }) => (
           <div key={id} className={styles['grid-item']}>
-            <HeroCard heroImage={sm} heroName={name} heroSlug={slug} />
+            <HeroCard heroImage={sm} heroName={name} id={id} hover />
           </div>
         ))
       ) : (

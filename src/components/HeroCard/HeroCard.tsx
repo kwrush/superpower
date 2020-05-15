@@ -4,24 +4,18 @@ import classNames from 'classnames';
 import styles from './HeroCard.module.css';
 
 interface HeroCardProps {
-  heroSlug: string;
+  id: number;
   heroImage: string;
   heroName: string;
   onImageLoad?: () => void;
   hover?: boolean;
 }
 
-const HeroCard: FC<HeroCardProps> = ({
-  heroSlug,
-  heroImage,
-  heroName,
-  onImageLoad,
-  hover = false,
-}) => {
+const HeroCard: FC<HeroCardProps> = ({ id, heroImage, heroName, onImageLoad, hover = false }) => {
   const classes = classNames(styles.card, { [styles['card-hover']]: hover });
 
   return (
-    <Link to={`/${heroSlug}`} className={classes}>
+    <Link to={`/${id}`} className={classes}>
       <img className={styles['card-image']} src={heroImage} alt={heroName} onLoad={onImageLoad} />
       <p className={styles['card-caption']}>{heroName}</p>
     </Link>

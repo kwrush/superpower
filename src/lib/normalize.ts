@@ -1,17 +1,18 @@
 import { HeroAPI } from '~app/types/response';
+import { HeroEntity } from '~app/types/app';
 
-const normalize = (heros: HeroAPI | HeroAPI[]) => {
+const normalize = (heros: HeroAPI | HeroAPI[]): HeroEntity => {
   if (!Array.isArray(heros)) {
     return {
-      [heros.slug]: { ...heros },
+      [heros.id]: { ...heros },
     };
   }
 
   return heros.reduce((acc, curr) => {
-    const { slug } = curr;
+    const { id } = curr;
     return {
       ...acc,
-      [slug]: curr,
+      [id]: curr,
     };
   }, {});
 };

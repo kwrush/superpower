@@ -12,6 +12,7 @@
   overflow: hidden;
   flex-grow: 0;
   flex-shrink: 0;
+  background-color: #ebecf2;
 }
 
 .card-hover:hover {

@@ -9,10 +9,10 @@ interface PowerRadarProps {
   powers: PowerStatsAPI;
   color?: string;
   backgroundColor?: string;
-  scalesNumber: number;
+  scalesNumber?: number;
 }
 
-const PowerRadar: FC<PowerRadarProps> = ({ powers, scalesNumber }) => {
+const PowerRadar: FC<PowerRadarProps> = ({ powers, scalesNumber = 5 }) => {
   const cx = 160;
   const cy = 120;
   const radius = 80;

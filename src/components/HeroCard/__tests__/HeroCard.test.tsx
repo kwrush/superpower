@@ -7,14 +7,14 @@ describe('HeroCard', () => {
   it('should render the card', () => {
     const { container } = render(
       <MemoryRouter>
-        <HeroCard heroImage="image" heroName="hero" heroSlug="123-hero" />
+        <HeroCard heroImage="image" heroName="hero" id={123} />
       </MemoryRouter>,
     );
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <a
         class="card"
-        href="/123-hero"
+        href="/123"
       >
         <img
           alt="hero"

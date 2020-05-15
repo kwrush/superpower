@@ -7,7 +7,7 @@ export const searchSuperHeroByName = async (name: string, signal?: AbortSignal) 
   return data;
 };
 
-export const searchSuperHeorById = async (id: number, signal?: AbortSignal) => {
+export const searchSuperHeroById = async (id: number, signal?: AbortSignal) => {
   const data = await request(`${API_URL}/?id=${id}`, signal);
   return data;
 };
