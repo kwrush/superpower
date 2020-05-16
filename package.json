@@ -2,14 +2,15 @@
   "name": "superpower",
   "version": "0.1.0",
   "private": true,
-  "description": "An application shows the super power of super heros",
+  "description": "A tiny app for infomation of superhero and supervillain",
   "license": "MIT",
   "author": {
     "name": "Kai Wang",
     "url": "https://github.com/kwrush"
   },
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/kwrush/superpower.git"
   },
   "scripts": {
     "tsc": "tsc",
@@ -60,7 +61,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn test"
+      "pre-push": "yarn jest"
     }
   },
   "lint-staged": {
