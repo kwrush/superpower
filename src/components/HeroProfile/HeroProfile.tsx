@@ -10,17 +10,12 @@ interface HeroProfileProps {
 }
 
 const HeroProfile: FC<HeroProfileProps> = ({ name, avatar, powers }) => (
-  <div>
-    <header>
-      <h2>{name}</h2>
-    </header>
-    <div className={styles.profile}>
-      <div>
-        <img src={avatar} alt={name} />
-      </div>
-      <PowerRadar powers={powers} />
-    </div>
-  </div>
+  <section className={styles.profile}>
+    <figure>
+      <img src={avatar} alt={name} />
+    </figure>
+    <PowerRadar powers={powers} />
+  </section>
 );
 
 export default HeroProfile;

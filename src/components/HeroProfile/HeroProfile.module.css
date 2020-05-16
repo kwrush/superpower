@@ -1,5 +1,14 @@
 .profile {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+}
+
+.avater {
+  display: block;
+  position: relative;
+}
+
+.avater > img {
+  object-fit: contain;
 }

@@ -3,7 +3,7 @@ import { HeroAPI } from '~app/types/response';
 
 const HEROS = [
   { id: 495, name: 'superman' },
-  { id: 51, name: 'batman' },
+  { id: 52, name: 'batman' },
   { id: 476, name: 'spider-man' },
   { id: 250, name: 'iron-man' },
   { id: 106, name: 'captain-america' },
@@ -13,11 +13,11 @@ const HEROS = [
   { id: 506, name: 'thanos' },
   { id: 140, name: 'darkseid' },
   { id: 553, name: 'wonder-woman' },
-  { id: 163, name: 'doomsday' },
+  { id: 510, name: 'thor' },
   { id: 481, name: 'star-lord' },
   { id: 550, name: 'wolverine' },
   { id: 160, name: 'doctor-strange' },
-  { id: 23, name: 'ant-man' },
+  { id: 307, name: 'loki' },
 ];
 
 // select the given number of heros randomly from HEROS array
@@ -26,7 +26,7 @@ const selectHeros = (amount: number) => HEROS.sort(() => 0.5 - Math.random()).sl
 const delay = (mills: number) => new Promise<void>((resolve) => setTimeout(() => resolve(), mills));
 
 export const getInitialHeros = (signal: AbortSignal) => {
-  const initialHeros = selectHeros(3);
+  const initialHeros = selectHeros(2);
   return initialHeros.reduce((accumulatedPromise, nextHero) => {
     // Have to add a delay otherwise http 429 error occurs
     return accumulatedPromise.then((results) =>
