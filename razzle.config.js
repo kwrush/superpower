@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const razzleHeroku = require('razzle-heroku');
 
 module.exports = {
   plugins: [
@@ -17,7 +18,7 @@ module.exports = {
       },
     },
   ],
-  modify: (defaultConfig, { dev }) => {
+  modify: (defaultConfig, { dev, target }, webpack) => {
     const config = { ...defaultConfig };
 
     config.module.rules = config.module.rules.map((rule) => {
@@ -59,6 +60,6 @@ module.exports = {
       '~app': path.resolve(__dirname, './src'),
     };
 
-    return config;
+    return razzleHeroku(config, { target, dev }, webpack);
   },
 };

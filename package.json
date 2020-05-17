@@ -4,6 +4,9 @@
   "private": true,
   "description": "A tiny app for infomation of superhero and supervillain",
   "license": "MIT",
+  "engines": {
+    "node": ">=12"
+  },
   "author": {
     "name": "Kai Wang",
     "url": "https://github.com/kwrush"
@@ -19,12 +22,14 @@
     "test": "razzle test --env=jsdom",
     "lint": "eslint . --ext .js,.ts,.tsx --ignore-path .gitignore --max-warnings 0",
     "start:prod": "NODE_ENV=production node build/server.js",
-    "clean:build": "rimraf ./build"
+    "clean:build": "rimraf ./build",
+    "deploy": "git push heroku master"
   },
   "dependencies": {
     "classnames": "^2.2.6",
     "express": "^4.17.1",
     "razzle": "^3.1.0",
+    "razzle-heroku": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.1.2",
