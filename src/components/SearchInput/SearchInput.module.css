@@ -25,6 +25,12 @@
   background: none;
   font-size: 1rem;
   line-height: 1.5;
-  background-color: #1a1c1e;
-  color: #ffffff;
+  background-color: #353535;
+  color: white;
+  border-radius: 4px;
+  transition: box-shadow 0.2s ease-out;
+}
+
+.input:focus {
+  box-shadow: 0 0 6px 1px #fbc62a;
 }

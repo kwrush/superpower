@@ -5,21 +5,12 @@ interface PowersProps {
   powers: number[];
   cx: number;
   cy: number;
-  dot?: boolean;
   color?: string;
   size: number;
   opacity?: number;
 }
 
-const Powers: FC<PowersProps> = ({
-  dot = false,
-  powers,
-  cx,
-  cy,
-  color = '#555',
-  size,
-  opacity = 0.2,
-}) => {
+const Powers: FC<PowersProps> = ({ powers, cx, cy, color = '#555', size, opacity = 0.2 }) => {
   const stats = useMemo(() => {
     const points = powers.map((power, index, all) => {
       const angle = getAngle(index, all.length);
@@ -36,19 +27,18 @@ const Powers: FC<PowersProps> = ({
   }, [powers, cx, cy, size]);
 
   return (
-    <>
-      {dot &&
-        stats.points.map((point) => (
-          <circle
-            key={point.join(',')}
-            cx={point[0].toFixed(4)}
-            cy={point[1].toFixed(4)}
-            r={3}
-            fill={color}
-          />
-        ))}
+    <g>
+      {stats.points.map((point) => (
+        <circle
+          key={point.join(',')}
+          cx={point[0].toFixed(4)}
+          cy={point[1].toFixed(4)}
+          r={3}
+          fill={color}
+        />
+      ))}
       <path d={stats.path} stroke={color} fill={color} strokeWidth="2" fillOpacity={opacity} />
-    </>
+    </g>
   );
 };
 

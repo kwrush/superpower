@@ -1,10 +1,9 @@
 import { useState, useCallback } from 'react';
 import { searchSuperHeroByName } from '~app/lib/api';
-import { HeroEntity } from '~app/types/app';
-import normalize from '~app/lib/normalize';
+import { HeroAPI } from '~app/types/response';
 
 const useSearchHero = () => {
-  const [searchResult, setSearchResult] = useState<HeroEntity>();
+  const [searchResult, setSearchResult] = useState<HeroAPI | null>();
   const [isSearching, setIsSearching] = useState(false);
 
   const searchHero = useCallback(
@@ -13,12 +12,9 @@ const useSearchHero = () => {
       try {
         const formattedQuery = query.replace(/\s+/, '-');
         const hero = await searchSuperHeroByName(formattedQuery);
-        if (typeof hero === 'string') {
-          setSearchResult({});
-        } else {
-          setSearchResult(normalize([hero]));
-        }
+        setSearchResult(hero);
       } catch (err) {
+        setSearchResult(null);
         // eslint-disable-next-line no-console
         console.error(err);
       }

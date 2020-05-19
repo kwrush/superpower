@@ -1,0 +1,10 @@
+.avatar {
+  display: block;
+  width: 120px;
+  margin: 0 2rem;
+}
+
+.image {
+  object-fit: contain;
+  max-width: 100%;
+}

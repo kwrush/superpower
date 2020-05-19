@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router';
 import HeroProfile from '~app/components/HeroProfile';
-import Grid from '~app/components/Grid';
+import NoResult from '~app/components/NoResult';
 import useFetchHero from '~app/hooks/useFetchHero';
 import Loader from '~app/components/Loader';
 import HeroDetails from '~app/components/HeroDetails';
@@ -9,13 +9,14 @@ import Container from '~app/components/Container';
 import styles from './Profile.module.css';
 
 const Profile: FC = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
+  const id = parseInt((slug as string).split('-')[0], 10);
   const { hero, isLoading } = useFetchHero(id);
 
   return (
     <Container>
       {isLoading && <Loader />}
-      {!isLoading && !hero && <Grid heros={{}} />}
+      {!isLoading && !hero && <NoResult />}
       {!isLoading && hero && (
         <>
           <header className={styles.header}>

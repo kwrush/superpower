@@ -1,4 +1,4 @@
-import React, { FC, useCallback, KeyboardEvent, ChangeEvent } from 'react';
+import React, { FC, useCallback, KeyboardEvent, ChangeEvent, useEffect } from 'react';
 import styles from './SearchInput.module.css';
 
 const ENTER_KEY_CODE = 13;
@@ -26,6 +26,10 @@ const SearchInput: FC<SearchInputProps> = ({ onSearch, onClear }) => {
     },
     [onClear],
   );
+
+  useEffect(() => {
+    if (onClear) onClear();
+  }, [onClear]);
 
   return (
     <div className={styles['input-wrapper']}>

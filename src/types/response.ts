@@ -9,6 +9,8 @@ export interface PowerStatsAPI {
 
 export type Gender = 'Male' | 'Female';
 
+export type Alignment = 'good' | 'bad' | 'neutral';
+
 export interface AppearanceAPI {
   gender: Gender;
   race: string;
@@ -25,7 +27,7 @@ export interface BiographyAPI {
   placeOfBirth: string;
   firstAppearance: string;
   publisher: string;
-  alignment: string;
+  alignment: Alignment;
 }
 
 export interface WorkAPI {

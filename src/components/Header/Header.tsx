@@ -5,14 +5,14 @@ import styles from './Header.module.css';
 const Header: FC = () => {
   return (
     <header className={styles.header}>
-      <h3>
+      <h2>
         <Link to="/" className={styles['header-link']}>
           <span role="img" aria-label="superhero" className={styles.emoji}>
             🦸
           </span>
           Superpower
         </Link>
-      </h3>
+      </h2>
     </header>
   );
 };

@@ -1,7 +1,7 @@
 import React, { FC, createContext, ReactNode, useCallback } from 'react';
-import useInitialHeros from '~app/hooks/useInitialHeros';
-import { HeroContextType } from '~app/types/app';
+import useArena from '~app/hooks/useArena';
 import useSearchHero from '~app/hooks/useSearchHero';
+import { HeroContextType } from '~app/types/app';
 
 interface HeroProviderProps {
   children: ReactNode;
@@ -15,7 +15,7 @@ const initialState: HeroContextType = {
 export const HeroContext = createContext(initialState);
 
 const HeroProvider: FC<HeroProviderProps> = ({ children }) => {
-  const { heros, isLoading } = useInitialHeros();
+  const { arenaPlayers, isLoading, setArenaPlayers } = useArena();
   const { isSearching, searchResult, setSearchResult, searchHero } = useSearchHero();
 
   const clearSearchResult = useCallback(() => {
@@ -24,7 +24,15 @@ const HeroProvider: FC<HeroProviderProps> = ({ children }) => {
 
   return (
     <HeroContext.Provider
-      value={{ heros, isLoading, searchResult, clearSearchResult, isSearching, searchHero }}
+      value={{
+        arenaPlayers,
+        isLoading,
+        searchResult,
+        clearSearchResult,
+        isSearching,
+        searchHero,
+        setArenaPlayers,
+      }}
     >
       {children}
     </HeroContext.Provider>

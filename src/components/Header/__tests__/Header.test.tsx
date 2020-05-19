@@ -14,7 +14,7 @@ describe('Header', () => {
       <header
         class="header"
       >
-        <h3>
+        <h2>
           <a
             class="header-link"
             href="/"
@@ -28,7 +28,7 @@ describe('Header', () => {
             </span>
             Superpower
           </a>
-        </h3>
+        </h2>
       </header>
     `);
   });
