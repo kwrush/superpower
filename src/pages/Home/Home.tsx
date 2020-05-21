@@ -1,65 +1,49 @@
-import React, { FC, useContext, useCallback } from 'react';
+import React, { FC, useContext } from 'react';
 import Header from '~app/components/Header';
 import SearchInput from '~app/components/SearchInput';
 import styles from './Home.module.css';
 import Container from '~app/components/Container';
 import Loader from '~app/components/Loader';
-import Arena from '~app/components/Arena';
+import Arena from '~app/components/ArenaCard';
 import { HeroContext } from '~app/containers/HeroProvider';
 import SearchResult from '~app/components/SearchResult';
-import { HeroAPI } from '~app/types/response';
+import useArena from '~app/hooks/useArena';
+import useSearchHero from '~app/hooks/useSearchHero';
 
 const Home: FC = () => {
-  const {
-    arenaPlayers,
-    isLoading,
-    isSearching,
-    clearSearchResult,
-    searchResult,
-    searchHero,
-    setArenaPlayers,
-  } = useContext(HeroContext);
+  const { arenaPlayers, clearSearchResult, addArenaPlayer } = useContext(HeroContext);
+  const { isLoading } = useArena();
 
-  const addArenaPlayer = useCallback(
-    (player: HeroAPI) => {
-      if (
-        setArenaPlayers &&
-        arenaPlayers &&
-        arenaPlayers.findIndex((existedPlayer) => existedPlayer.id === player.id) < 0
-      ) {
-        const newPlayers = [...arenaPlayers, player].slice(-2);
-        setArenaPlayers(newPlayers);
-      }
-    },
-    [arenaPlayers, setArenaPlayers],
-  );
+  const { isSearching, searchHero, searchResult } = useSearchHero();
 
-  const renderContent = () => {
-    if (isLoading) {
+  const renderSearch = () => {
+    if (isSearching) {
       return <Loader />;
     }
 
     return (
-      <>
-        <div className={styles.header}>
-          <SearchInput onSearch={searchHero} onClear={clearSearchResult} />
-        </div>
-        {isSearching ? (
-          <Loader />
-        ) : (
-          searchResult !== undefined && (
-            <SearchResult searchResult={searchResult} addPlayer={addArenaPlayer} />
-          )
-        )}
-        {arenaPlayers && <Arena player={arenaPlayers[0]} opponent={arenaPlayers[1]} />}
-      </>
+      searchResult !== undefined && (
+        <SearchResult searchResult={searchResult} addPlayer={addArenaPlayer} />
+      )
     );
+  };
+
+  const renderArena = () => {
+    if (isLoading) {
+      return <Loader />;
+    }
+
+    return arenaPlayers && <Arena player={arenaPlayers[0]} opponent={arenaPlayers[1]} />;
   };
 
   return (
     <Container>
       <Header />
-      {renderContent()}
+      <div className={styles.search}>
+        <SearchInput onSearch={searchHero} onClear={clearSearchResult} />
+      </div>
+      {renderSearch()}
+      {renderArena()}
     </Container>
   );
 };

@@ -16,7 +16,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ id, name, image, alignment = 'n
   const slug = `${id}-${name.toLowerCase().replace(/\s+/, '-')}`;
 
   return (
-    <Link to={`/${slug}`} className={cardClasses}>
+    <Link to={`/profile/${slug}`} className={cardClasses}>
       <img className={styles['card-image']} src={image} alt={name} />
       <p className={styles['card-caption']}>{name}</p>
     </Link>

@@ -10,7 +10,7 @@ interface HeroDetailsProps {
 const HeroDetails: FC<HeroDetailsProps> = ({ biography, appearance }) => (
   <section className={styles.details}>
     <ul className={styles.list}>
-      <h2>Appearance</h2>
+      <h3>Appearance</h3>
       <li className={styles.item}>
         <span>Gender</span>
         <span>{appearance.gender}</span>
@@ -29,7 +29,7 @@ const HeroDetails: FC<HeroDetailsProps> = ({ biography, appearance }) => (
       </li>
     </ul>
     <ul className={styles.list}>
-      <h2>Biography</h2>
+      <h3>Biography</h3>
       <li className={styles.item}>
         <span>Full Name</span>
         <span>{biography.fullName}</span>

@@ -1,37 +1,43 @@
-import React, { FC, createContext, ReactNode, useCallback } from 'react';
-import useArena from '~app/hooks/useArena';
-import useSearchHero from '~app/hooks/useSearchHero';
+import React, { FC, createContext, ReactNode, useCallback, useState } from 'react';
 import { HeroContextType } from '~app/types/app';
+import { HeroAPI } from '~app/types/response';
 
 interface HeroProviderProps {
   children: ReactNode;
 }
 
-const initialState: HeroContextType = {
-  isLoading: false,
-  isSearching: false,
-};
-
-export const HeroContext = createContext(initialState);
+export const HeroContext = createContext<HeroContextType>({});
 
 const HeroProvider: FC<HeroProviderProps> = ({ children }) => {
-  const { arenaPlayers, isLoading, setArenaPlayers } = useArena();
-  const { isSearching, searchResult, setSearchResult, searchHero } = useSearchHero();
+  const [arenaPlayers, setArenaPlayers] = useState<HeroAPI[] | undefined>();
+  const [searchResult, setSearchResult] = useState<HeroAPI | null>();
 
   const clearSearchResult = useCallback(() => {
     setSearchResult(undefined);
   }, [setSearchResult]);
 
+  const addArenaPlayer = useCallback(
+    (player: HeroAPI) => {
+      if (
+        setArenaPlayers &&
+        arenaPlayers &&
+        arenaPlayers.findIndex((existedPlayer) => existedPlayer.id === player.id) < 0
+      ) {
+        const newPlayers = [...arenaPlayers, player].slice(-2);
+        setArenaPlayers(newPlayers);
+      }
+    },
+    [arenaPlayers, setArenaPlayers],
+  );
+
   return (
     <HeroContext.Provider
       value={{
         arenaPlayers,
-        isLoading,
         searchResult,
         clearSearchResult,
-        isSearching,
-        searchHero,
         setArenaPlayers,
+        addArenaPlayer,
       }}
     >
       {children}

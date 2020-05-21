@@ -8,20 +8,37 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: 360px;
+  min-width: 180px;
+  max-width: 320px;
+  font-size: 0.9rem;
+}
+
+.list:first-child {
+  margin-right: 1rem;
 }
 
 .item {
   display: flex;
-  line-height: 1.75;
+  padding: 0 0.5rem;
+  line-height: 2;
   text-align: start;
+  justify-content: space-between;
+}
+
+.item:nth-child(even) {
+  background-color: #353535;
 }
 
 .item > span:first-child {
   margin-right: 0.5rem;
   font-weight: bold;
+  text-align: start;
 }
 
 .item > span:first-child:after {
   content: ':';
+}
+
+.item > span:last-child {
+  text-align: end;
 }

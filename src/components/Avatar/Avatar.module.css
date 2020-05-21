@@ -1,7 +1,18 @@
 .avatar {
   display: block;
-  width: 120px;
   margin: 0 2rem;
+}
+
+.avatar-s {
+  width: 90px;
+}
+
+.avatar-m {
+  width: 120px;
+}
+
+.avatar-l {
+  width: 150px;
 }
 
 .image {

@@ -1,24 +1,31 @@
-import { useEffect, useState, useCallback } from 'react';
-import { getInitialHeros } from '~app/lib/getInitialHeros';
-import { HeroAPI } from '~app/types/response';
+import { useEffect, useState, useCallback, useContext } from 'react';
+import getHeros from '~app/lib/getHeros';
+import randomHeros from '~app/lib/randomHeros';
+import { HeroContext } from '~app/containers/HeroProvider';
 
-const useArena = () => {
-  const [arenaPlayers, setArenaPlayers] = useState<HeroAPI[]>();
-  const [isLoading, setIsLoading] = useState(true);
+const useArena = (playerIds?: number[]) => {
+  const { arenaPlayers, setArenaPlayers } = useContext(HeroContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const initiatePlayers = useCallback(
     async (signal: AbortSignal) => {
-      try {
-        const initialHeros = await getInitialHeros(signal);
-        setArenaPlayers(initialHeros);
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
+      // The API is not reliable, let's use the old data in memory when it's possible
+      if (!arenaPlayers && setArenaPlayers) {
+        setIsLoading(true);
+
+        try {
+          const playersToFetch = playerIds || randomHeros(2);
+          const initialHeros = await getHeros(playersToFetch, signal);
+          setArenaPlayers(initialHeros);
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.error(err);
+        }
       }
 
       setIsLoading(false);
     },
-    [setArenaPlayers, setIsLoading],
+    [arenaPlayers, setArenaPlayers, setIsLoading, playerIds],
   );
 
   useEffect(() => {
@@ -30,7 +37,7 @@ const useArena = () => {
     return () => abortController.abort();
   }, [initiatePlayers]);
 
-  return { arenaPlayers, setArenaPlayers, isLoading };
+  return { isLoading };
 };
 
 export default useArena;

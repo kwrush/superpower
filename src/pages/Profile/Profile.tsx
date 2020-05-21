@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router';
-import HeroProfile from '~app/components/HeroProfile';
+import HeroPowersProfile from '~app/components/HeroPowersProfile';
 import NoResult from '~app/components/NoResult';
 import useFetchHero from '~app/hooks/useFetchHero';
 import Loader from '~app/components/Loader';
@@ -22,7 +22,7 @@ const Profile: FC = () => {
           <header className={styles.header}>
             <h1>{hero.name}</h1>
           </header>
-          <HeroProfile name={hero.name} avatar={hero.images.sm} powers={hero.powerstats} />
+          <HeroPowersProfile name={hero.name} avatar={hero.images.sm} powers={hero.powerstats} />
           <HeroDetails appearance={hero.appearance} biography={hero.biography} />
         </>
       )}

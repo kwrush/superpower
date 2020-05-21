@@ -6,7 +6,7 @@ import { HeroContext } from '~app/containers/HeroProvider';
 const useFetchHero = (heroId: number) => {
   const [hero, setHero] = useState<HeroAPI>();
   const { arenaPlayers, searchResult } = useContext(HeroContext);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchHero = useCallback(
     async (id: number, signal: AbortSignal) => {
@@ -17,6 +17,7 @@ const useFetchHero = (heroId: number) => {
         if (localHero) {
           setHero(localHero);
         } else {
+          setIsLoading(true);
           const data = await searchSuperHeroById(id, signal);
           setHero(data);
         }

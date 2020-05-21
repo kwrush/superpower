@@ -1,19 +1,17 @@
 import React, { FC } from 'react';
 import PowerRadar, { Powers } from '../PowerRadar';
 import { PowerStatsAPI } from '~app/types/response';
-import styles from './HeroProfile.module.css';
+import styles from './HeroPowersProfile.module.css';
 import Avatar from '../Avatar';
 
-interface HeroProfileProps {
+interface HeroPowersProfileProps {
   name: string;
   avatar: string;
   powers: PowerStatsAPI;
 }
 
-const HeroProfile: FC<HeroProfileProps> = ({ name, avatar, powers }) => {
-  const captions = Object.entries(powers).map(
-    ([power, value]) => `${power.charAt(0).toUpperCase() + power.slice(1)}(${value})`,
-  );
+const HeroPowersProfile: FC<HeroPowersProfileProps> = ({ name, avatar, powers }) => {
+  const captions = Object.entries(powers).map(([power, value]) => `${power}(${value})`);
   const powerValues = Object.values(powers);
 
   return (
@@ -28,4 +26,4 @@ const HeroProfile: FC<HeroProfileProps> = ({ name, avatar, powers }) => {
   );
 };
 
-export default HeroProfile;
+export default HeroPowersProfile;

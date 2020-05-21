@@ -9,4 +9,5 @@
 .radar-chart {
   font-size: 11px;
   fill: #fdfdfd;
+  text-transform: capitalize;
 }

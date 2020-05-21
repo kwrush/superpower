@@ -5,11 +5,9 @@ export type HeroEntity = Readonly<{
 }>;
 
 export interface HeroContextType {
-  isLoading: boolean;
-  isSearching: boolean;
   arenaPlayers?: HeroAPI[];
   searchResult?: HeroAPI | null;
   clearSearchResult?: () => void;
-  setArenaPlayers?: (players: HeroAPI[]) => void;
-  searchHero?: (query: string) => void;
+  setArenaPlayers?: (players: HeroAPI[] | undefined) => void;
+  addArenaPlayer?: (player: HeroAPI) => void;
 }

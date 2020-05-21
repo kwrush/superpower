@@ -13,7 +13,7 @@ describe('CharacterCard', () => {
     expect(container.firstChild).toMatchInlineSnapshot(`
       <a
         class="card-neutral card"
-        href="/1-name"
+        href="/profile/1-name"
       >
         <img
           alt="name"
@@ -38,7 +38,7 @@ describe('CharacterCard', () => {
     expect(container.firstChild).toMatchInlineSnapshot(`
       <a
         class="card-good card"
-        href="/1-name"
+        href="/profile/1-name"
       >
         <img
           alt="name"
@@ -63,7 +63,7 @@ describe('CharacterCard', () => {
     expect(container.firstChild).toMatchInlineSnapshot(`
       <a
         class="card-bad card"
-        href="/1-name"
+        href="/profile/1-name"
       >
         <img
           alt="name"

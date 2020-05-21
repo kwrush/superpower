@@ -1,0 +1,52 @@
+.container {
+  min-width: 200px;
+}
+
+.avatar {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar > svg {
+  margin-top: 1rem;
+}
+
+.alignment {
+  text-align: center;
+}
+
+.alignment > span {
+  text-transform: uppercase;
+}
+
+.alignment-good > span {
+  color: #158f53;
+}
+
+.alignment-bad > span {
+  color: #be1417;
+}
+.alignment-neutral > span {
+  color: #f9a407;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.list-item {
+  padding: 0 0.75rem;
+  display: flex;
+  line-height: 2;
+  justify-content: space-between;
+}
+
+.list-item:nth-child(odd) {
+  background-color: #353535;
+}

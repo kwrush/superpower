@@ -2,15 +2,15 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { HeroAPI } from '~app/types/response';
 import CharacterCard from '../CharacterCard';
-import styles from './Arena.module.css';
+import styles from './ArenaCard.module.css';
 
-interface ArenaProps {
+interface ArenaCardProps {
   player: HeroAPI;
   opponent: HeroAPI;
 }
 
-const Arena: FC<ArenaProps> = ({ player, opponent }) => {
-  const link = `/arena?player=${player.id}&opponent=${opponent.id}`;
+const ArenaCard: FC<ArenaCardProps> = ({ player, opponent }) => {
+  const link = `/arena/${player.id}v${opponent.id}`;
   return (
     <div className={styles.arena}>
       <h3 className={styles.header}>
@@ -44,4 +44,4 @@ const Arena: FC<ArenaProps> = ({ player, opponent }) => {
   );
 };
 
-export default Arena;
+export default ArenaCard;

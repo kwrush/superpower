@@ -24,7 +24,7 @@ const useSearchHero = () => {
     [setSearchResult],
   );
 
-  return { isSearching, searchResult, searchHero, setSearchResult };
+  return { isSearching, searchResult, searchHero };
 };
 
 export default useSearchHero;

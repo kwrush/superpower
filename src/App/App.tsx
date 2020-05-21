@@ -5,13 +5,15 @@ import './App.module.css';
 import HeroProvider from '~app/containers/HeroProvider';
 import Profile from '~app/pages/Profile';
 import Arena from '~app/pages/Arena';
+import NotFound from '~app/pages/404';
 
 const App = () => (
   <HeroProvider>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/arena" component={Arena} />
-      <Route path="/:slug" component={Profile} />
+      <Route path="/arena/:slug" component={Arena} />
+      <Route path="/profile/:slug" component={Profile} />
+      <Route component={NotFound} />
     </Switch>
   </HeroProvider>
 );
