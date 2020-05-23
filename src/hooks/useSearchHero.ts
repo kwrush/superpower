@@ -1,24 +1,24 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useContext } from 'react';
 import { searchSuperHeroByName } from '~app/lib/api';
-import { HeroAPI } from '~app/types/response';
+import { HeroContext } from '~app/containers/HeroProvider';
 
 const useSearchHero = () => {
-  const [searchResult, setSearchResult] = useState<HeroAPI | null>();
+  const { searchResult, setSearchResult } = useContext(HeroContext);
   const [isSearching, setIsSearching] = useState(false);
 
   const searchHero = useCallback(
     async (query: string) => {
       setIsSearching(true);
+      let result = null;
       try {
         const formattedQuery = query.replace(/\s+/, '-');
-        const hero = await searchSuperHeroByName(formattedQuery);
-        setSearchResult(hero);
+        result = await searchSuperHeroByName(formattedQuery);
       } catch (err) {
-        setSearchResult(null);
         // eslint-disable-next-line no-console
         console.error(err);
       }
 
+      if (setSearchResult) setSearchResult(result);
       setIsSearching(false);
     },
     [setSearchResult],

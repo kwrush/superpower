@@ -38,6 +38,7 @@ const HeroProvider: FC<HeroProviderProps> = ({ children }) => {
         clearSearchResult,
         setArenaPlayers,
         addArenaPlayer,
+        setSearchResult,
       }}
     >
       {children}

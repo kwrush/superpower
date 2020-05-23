@@ -10,4 +10,5 @@ export interface HeroContextType {
   clearSearchResult?: () => void;
   setArenaPlayers?: (players: HeroAPI[] | undefined) => void;
   addArenaPlayer?: (player: HeroAPI) => void;
+  setSearchResult?: (result: HeroAPI | null | undefined) => void;
 }

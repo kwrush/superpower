@@ -1,8 +1,9 @@
 # Superpower
 
-🦸A tiny app for information of superhero and supervillain 🦹, simple and just for fun.
+🦸A tiny app for information of superhero and supervillain, simple and just for fun.
 
 Bootstapped with [Razzle](https://github.com/jaredpalmer/razzle)
+
 API is powered by [SuperHeroAPI](https://rapidapi.com/jakash1997/api/superhero-search)
 
 ## Demo
