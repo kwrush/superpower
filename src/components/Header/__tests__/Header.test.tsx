@@ -24,7 +24,7 @@ describe('Header', () => {
               class="emoji"
               role="img"
             >
-              🦸
+              🦸‍♂
             </span>
             Superpower
           </a>

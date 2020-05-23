@@ -17,7 +17,7 @@ describe('NoResult', () => {
             class="emoji"
             role="img"
           >
-            🦹
+            🦹‍♂️
           </span>
           No heros found
         </p>

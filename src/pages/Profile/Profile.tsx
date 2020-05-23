@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router';
+import { Helmet } from 'react-helmet';
 import HeroPowersProfile from '~app/components/HeroPowersProfile';
 import NoResult from '~app/components/NoResult';
 import useFetchHero from '~app/hooks/useFetchHero';
@@ -15,6 +16,9 @@ const Profile: FC = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>{`Profile-${hero?.name}`}</title>
+      </Helmet>
       {isLoading && <Loader />}
       {!isLoading && !hero && <NoResult />}
       {!isLoading && hero && (

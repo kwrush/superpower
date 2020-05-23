@@ -5,14 +5,12 @@ import { HeroContext } from '~app/containers/HeroProvider';
 
 const useArena = (playerIds?: number[]) => {
   const { arenaPlayers, setArenaPlayers } = useContext(HeroContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const initiatePlayers = useCallback(
     async (signal: AbortSignal) => {
       // The API is not reliable, let's use the old data in memory when it's possible
       if (!arenaPlayers && setArenaPlayers) {
-        setIsLoading(true);
-
         try {
           const playersToFetch = playerIds || randomHeros(2);
           const initialHeros = await getHeros(playersToFetch, signal);

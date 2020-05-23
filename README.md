@@ -1,6 +1,6 @@
 # Superpower
 
-🦸A tiny app for information of superhero and supervillain, simple and just for fun.
+🦸‍♂️A tiny app for information of superhero and supervillain, simple and just for fun.
 
 Bootstapped with [Razzle](https://github.com/jaredpalmer/razzle)
 

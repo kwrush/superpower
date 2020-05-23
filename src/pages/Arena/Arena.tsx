@@ -1,4 +1,5 @@
 import React, { FC, useMemo } from 'react';
+import { Helmet } from 'react-helmet';
 import Container from '~app/components/Container';
 import PowerRadar, { Powers } from '~app/components/PowerRadar';
 import PowersList from '~app/components/PowersList';
@@ -18,6 +19,9 @@ const Arena: FC = () => {
 
       return (
         <>
+          <Helmet>
+            <title>{`Arena-${player.name} v ${opponent.name}`}</title>
+          </Helmet>
           <h2 className={styles.header}>{`${player.name} v ${opponent.name}`}</h2>
           <section className={styles.arena}>
             <PowersList

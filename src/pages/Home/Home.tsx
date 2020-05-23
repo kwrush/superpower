@@ -1,4 +1,5 @@
 import React, { FC, useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import Header from '~app/components/Header';
 import SearchInput from '~app/components/SearchInput';
 import styles from './Home.module.css';
@@ -38,6 +39,9 @@ const Home: FC = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Superpower</title>
+      </Helmet>
       <Header />
       <div className={styles.search}>
         <SearchInput onSearch={searchHero} onClear={clearSearchResult} />

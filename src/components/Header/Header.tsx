@@ -8,7 +8,7 @@ const Header: FC = () => {
       <h2>
         <Link to="/" className={styles['header-link']}>
           <span role="img" aria-label="superhero" className={styles.emoji}>
-            🦸
+            🦸‍♂
           </span>
           Superpower
         </Link>
