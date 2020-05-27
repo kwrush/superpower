@@ -5,7 +5,7 @@ import SearchInput from '~app/components/SearchInput';
 import styles from './Home.module.css';
 import Container from '~app/components/Container';
 import Loader from '~app/components/Loader';
-import Arena from '~app/components/ArenaCard';
+import ArenaCard from '~app/components/ArenaCard';
 import { HeroContext } from '~app/containers/HeroProvider';
 import SearchResult from '~app/components/SearchResult';
 import useArena from '~app/hooks/useArena';
@@ -34,7 +34,7 @@ const Home: FC = () => {
       return <Loader />;
     }
 
-    return arenaPlayers && <Arena player={arenaPlayers[0]} opponent={arenaPlayers[1]} />;
+    return arenaPlayers && <ArenaCard player={arenaPlayers[0]} opponent={arenaPlayers[1]} />;
   };
 
   return (

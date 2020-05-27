@@ -46,4 +46,4 @@ const SearchInput: FC<SearchInputProps> = ({ onSearch, onClear }) => {
   );
 };
 
-export default SearchInput;
+export default React.memo(SearchInput);
