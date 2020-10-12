@@ -1,12 +1,22 @@
-import { useEffect, useState, useCallback, useContext } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import shallow from 'zustand/shallow';
 import { searchSuperHeroById } from '~app/lib/api';
 import { HeroAPI } from '~app/types/response';
-import { HeroContext } from '~app/containers/HeroProvider';
+import useHeroStore, {
+  HeroStore,
+  selectArenaPlayers,
+  selectSearchResult,
+} from './useHeroStore';
+
+const selectHeroData = (state: HeroStore) => ({
+  arenaPlayers: selectArenaPlayers(state),
+  searchResult: selectSearchResult(state),
+});
 
 const useFetchHero = (heroId: number) => {
   const [hero, setHero] = useState<HeroAPI>();
-  const { arenaPlayers, searchResult } = useContext(HeroContext);
   const [isLoading, setIsLoading] = useState(true);
+  const { arenaPlayers, searchResult } = useHeroStore(selectHeroData, shallow);
 
   const fetchHero = useCallback(
     async (id: number, signal: AbortSignal) => {

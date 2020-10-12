@@ -1,16 +1,21 @@
-import { useEffect, useState, useCallback, useContext } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import shallow from 'zustand/shallow';
 import getHeros from '~app/lib/getHeros';
 import randomHeros from '~app/lib/randomHeros';
-import { HeroContext } from '~app/containers/HeroProvider';
+import useHeroStore, { selectArenaState } from './useHeroStore';
 
 const useArena = (playerIds?: number[]) => {
-  const { arenaPlayers, setArenaPlayers } = useContext(HeroContext);
+  const { arenaPlayers, setArenaPlayers } = useHeroStore(
+    selectArenaState,
+    shallow,
+  );
+
   const [isLoading, setIsLoading] = useState(true);
 
   const initiatePlayers = useCallback(
     async (signal: AbortSignal) => {
       // The API is not reliable, let's use the old data in memory when it's possible
-      if (!arenaPlayers && setArenaPlayers) {
+      if (!arenaPlayers) {
         try {
           const playersToFetch = playerIds || randomHeros(2);
           const initialHeros = await getHeros(playersToFetch, signal);

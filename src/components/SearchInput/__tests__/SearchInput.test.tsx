@@ -8,7 +8,9 @@ import SearchInput from '..';
 
 describe('SearchInput', () => {
   it('should render search input', () => {
-    const { container } = render(<SearchInput onSearch={jest.fn()} />);
+    const { container } = render(
+      <SearchInput onSearch={jest.fn()} onClear={jest.fn()} />,
+    );
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
@@ -31,7 +33,9 @@ describe('SearchInput', () => {
 
   it('should call onSearch when click on enter key', () => {
     const onSearch = jest.fn();
-    const { container } = render(<SearchInput onSearch={onSearch} />);
+    const { container } = render(
+      <SearchInput onSearch={onSearch} onClear={jest.fn()} />,
+    );
     const input = getByPlaceholderText(container, 'Search for heros');
     fireEvent.keyUp(input, { keyCode: 13 });
 

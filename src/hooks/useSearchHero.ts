@@ -1,9 +1,9 @@
-import { useState, useCallback, useContext } from 'react';
+import { useState, useCallback } from 'react';
 import { searchSuperHeroByName } from '~app/lib/api';
-import { HeroContext } from '~app/containers/HeroProvider';
+import useHeroStore, { selectSearchState } from './useHeroStore';
 
 const useSearchHero = () => {
-  const { searchResult, setSearchResult } = useContext(HeroContext);
+  const { searchResult, setSearchResult } = useHeroStore(selectSearchState);
   const [isSearching, setIsSearching] = useState(false);
 
   const searchHero = useCallback(

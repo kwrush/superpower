@@ -13,32 +13,14 @@ describe('SearchResult', () => {
     images: { sm: 'image' },
   };
 
-  it('should render no result', () => {
-    const { container } = render(<SearchResult searchResult={null} />);
-    expect(container.firstChild).toMatchInlineSnapshot(`
-      <div
-        class="wrapper"
-      >
-        <p
-          class="alert"
-        >
-          <span
-            aria-label="Supervillain"
-            class="emoji"
-            role="img"
-          >
-            🦹‍♂️
-          </span>
-          No heros found
-        </p>
-      </div>
-    `);
-  });
-
   it('should render the search result', () => {
     const { container } = render(
       <MemoryRouter>
-        <SearchResult searchResult={hero as any} />
+        <SearchResult
+          searchResult={hero as any}
+          addPlayer={jest.fn()}
+          onClear={jest.fn()}
+        />
       </MemoryRouter>,
     );
     expect(container.firstChild).toMatchInlineSnapshot(`
@@ -70,16 +52,22 @@ describe('SearchResult', () => {
     `);
   });
 
-  it('should call addPlayer when click on the button', () => {
+  it('should call addPlayer and onClear when click on the button', () => {
     const addPlayer = jest.fn();
+    const onClear = jest.fn();
     const { container } = render(
       <MemoryRouter>
-        <SearchResult searchResult={hero as any} addPlayer={addPlayer} />
+        <SearchResult
+          searchResult={hero as any}
+          addPlayer={addPlayer}
+          onClear={onClear}
+        />
       </MemoryRouter>,
     );
 
     fireEvent.click(getByText(container, 'Add to arena'));
 
     expect(addPlayer).toHaveBeenCalledWith(hero);
+    expect(onClear).toHaveBeenCalledTimes(1);
   });
 });

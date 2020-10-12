@@ -1,23 +1,17 @@
-import React, {
-  FC,
-  useCallback,
-  KeyboardEvent,
-  ChangeEvent,
-  useEffect,
-} from 'react';
+import React, { FC, useCallback, KeyboardEvent, ChangeEvent } from 'react';
 import styles from './SearchInput.module.css';
 
 const ENTER_KEY_CODE = 13;
 
 interface SearchInputProps {
-  onSearch?: (query: string) => void;
-  onClear?: () => void;
+  onSearch: (query: string) => void;
+  onClear: () => void;
 }
 
 const SearchInput: FC<SearchInputProps> = ({ onSearch, onClear }) => {
   const handleKeyUp = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
-      if (e.keyCode === ENTER_KEY_CODE && onSearch) {
+      if (e.keyCode === ENTER_KEY_CODE) {
         onSearch(e.currentTarget.value);
       }
     },
@@ -26,16 +20,12 @@ const SearchInput: FC<SearchInputProps> = ({ onSearch, onClear }) => {
 
   const handleOnChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      if (!e.currentTarget.value && onClear) {
+      if (!e.currentTarget.value) {
         onClear();
       }
     },
     [onClear],
   );
-
-  useEffect(() => {
-    if (onClear) onClear();
-  }, [onClear]);
 
   return (
     <div className={styles['input-wrapper']}>
@@ -52,4 +42,4 @@ const SearchInput: FC<SearchInputProps> = ({ onSearch, onClear }) => {
   );
 };
 
-export default React.memo(SearchInput);
+export default SearchInput;

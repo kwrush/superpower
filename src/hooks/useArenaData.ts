@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { HeroContext } from '~app/containers/HeroProvider';
 import { Alignment, PowerStatsAPI } from '~app/types/response';
+import useHeroStore, { selectArenaPlayers } from './useHeroStore';
 
 type ArenaData = {
   name: string;
@@ -16,7 +16,7 @@ const useArenaData = () => {
     (slug as string).split('v').map((id) => parseInt(id, 10)),
   );
 
-  const { arenaPlayers } = useContext(HeroContext);
+  const arenaPlayers = useHeroStore(selectArenaPlayers);
   const [arenaData, setArenaData] = useState<ArenaData[] | undefined>();
 
   useEffect(() => {

@@ -44,4 +44,4 @@ const ArenaCard: FC<ArenaCardProps> = ({ player, opponent }) => {
   );
 };
 
-export default React.memo(ArenaCard);
+export default ArenaCard;

@@ -1,25 +1,27 @@
-import React, { FC, useCallback, useContext } from 'react';
+import React, { FC, useCallback } from 'react';
 import CharacterCard from '../CharacterCard';
 import { HeroAPI } from '~app/types/response';
-import NoResult from '../NoResult';
 import styles from './SearchResult.module.css';
-import { HeroContext } from '~app/containers/HeroProvider';
 
 interface SearchResultProps {
-  searchResult: HeroAPI | null;
-  addPlayer?: (player: HeroAPI) => void;
+  searchResult: HeroAPI;
+  addPlayer: (player: HeroAPI) => void;
+  onClear: () => void;
 }
 
-const SearchResult: FC<SearchResultProps> = ({ searchResult, addPlayer }) => {
-  const { clearSearchResult } = useContext(HeroContext);
+const SearchResult: FC<SearchResultProps> = ({
+  searchResult,
+  addPlayer,
+  onClear,
+}) => {
   const onAddToArena = useCallback(() => {
     if (searchResult && addPlayer) {
       addPlayer(searchResult);
-      if (clearSearchResult) clearSearchResult();
+      onClear();
     }
-  }, [addPlayer, searchResult, clearSearchResult]);
+  }, [addPlayer, searchResult, onClear]);
 
-  return searchResult ? (
+  return (
     <div className={styles.result}>
       <CharacterCard
         id={searchResult.id}
@@ -31,8 +33,6 @@ const SearchResult: FC<SearchResultProps> = ({ searchResult, addPlayer }) => {
         Add to arena
       </button>
     </div>
-  ) : (
-    <NoResult />
   );
 };
 
