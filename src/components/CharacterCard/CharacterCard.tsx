@@ -11,7 +11,12 @@ interface CharacterCardProps {
   alignment: Alignment;
 }
 
-const CharacterCard: FC<CharacterCardProps> = ({ id, name, image, alignment = 'neutral' }) => {
+const CharacterCard: FC<CharacterCardProps> = ({
+  id,
+  name,
+  image,
+  alignment = 'neutral',
+}) => {
   const cardClasses = classNames(styles[`card-${alignment}`], styles.card);
   const slug = `${id}-${name.toLowerCase().replace(/\s+/, '-')}`;
 

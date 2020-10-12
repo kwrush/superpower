@@ -20,7 +20,10 @@ const PowersList: FC<PowersListProps> = ({
   powers,
 }) => {
   const powersEntities = Object.entries(powers);
-  const alignmentClasses = classNames(styles.alignment, styles[`alignment-${alignment}`]);
+  const alignmentClasses = classNames(
+    styles.alignment,
+    styles[`alignment-${alignment}`],
+  );
 
   return (
     <div className={styles.container}>

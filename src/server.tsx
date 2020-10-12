@@ -42,7 +42,11 @@ server
   .get('/*', (req, res) => {
     const context: StaticRouterContext = {};
     const stream = renderToNodeStream(
-      <HTML js={assets.client.js} css={assets.client.css} helmet={Helmet.renderStatic()}>
+      <HTML
+        js={assets.client.js}
+        css={assets.client.css}
+        helmet={Helmet.renderStatic()}
+      >
         <StaticRouter context={context} location={req.url}>
           <App />
         </StaticRouter>

@@ -17,7 +17,8 @@ const Axes: FC<AxesProps> = ({ axisLength, captions, cx, cy }) => {
     const px = cx + polarToX(angle, radius);
     const py = cy + polarToY(angle, radius);
 
-    const textAnchor = angle > Math.PI / 2 && angle < Math.PI * 1.5 ? 'end' : 'start';
+    const textAnchor =
+      angle > Math.PI / 2 && angle < Math.PI * 1.5 ? 'end' : 'start';
     let textBaseline = 'central';
     if (angle > 0 && angle < Math.PI) {
       textBaseline = 'text-before-edge';

@@ -10,7 +10,14 @@ interface PowersProps {
   opacity?: number;
 }
 
-const Powers: FC<PowersProps> = ({ powers, cx, cy, color = '#555', size, opacity = 0.2 }) => {
+const Powers: FC<PowersProps> = ({
+  powers,
+  cx,
+  cy,
+  color = '#555',
+  size,
+  opacity = 0.2,
+}) => {
   const stats = useMemo(() => {
     const points = powers.map((power, index, all) => {
       const angle = getAngle(index, all.length);
@@ -37,7 +44,13 @@ const Powers: FC<PowersProps> = ({ powers, cx, cy, color = '#555', size, opacity
           fill={color}
         />
       ))}
-      <path d={stats.path} stroke={color} fill={color} strokeWidth="2" fillOpacity={opacity} />
+      <path
+        d={stats.path}
+        stroke={color}
+        fill={color}
+        strokeWidth="2"
+        fillOpacity={opacity}
+      />
     </g>
   );
 };

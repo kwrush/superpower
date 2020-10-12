@@ -1,4 +1,10 @@
-import React, { FC, createContext, ReactNode, useCallback, useState } from 'react';
+import React, {
+  FC,
+  createContext,
+  ReactNode,
+  useCallback,
+  useState,
+} from 'react';
 import { HeroContextType } from '~app/types/app';
 import { HeroAPI } from '~app/types/response';
 
@@ -21,7 +27,9 @@ const HeroProvider: FC<HeroProviderProps> = ({ children }) => {
       if (
         setArenaPlayers &&
         arenaPlayers &&
-        arenaPlayers.findIndex((existedPlayer) => existedPlayer.id === player.id) < 0
+        arenaPlayers.findIndex(
+          (existedPlayer) => existedPlayer.id === player.id,
+        ) < 0
       ) {
         const newPlayers = [...arenaPlayers, player].slice(-2);
         setArenaPlayers(newPlayers);

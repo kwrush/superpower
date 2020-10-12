@@ -21,6 +21,7 @@
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
     "lint": "eslint . --ext .js,.ts,.tsx --ignore-path .gitignore --max-warnings 0",
+    "format": "prettier --ignore-path .gitignore --write .",
     "start:prod": "NODE_ENV=production node build/server.js",
     "clean:build": "rimraf ./build",
     "deploy": "git push heroku master"

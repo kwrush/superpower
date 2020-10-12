@@ -1,4 +1,10 @@
-import React, { FC, useCallback, KeyboardEvent, ChangeEvent, useEffect } from 'react';
+import React, {
+  FC,
+  useCallback,
+  KeyboardEvent,
+  ChangeEvent,
+  useEffect,
+} from 'react';
 import styles from './SearchInput.module.css';
 
 const ENTER_KEY_CODE = 13;

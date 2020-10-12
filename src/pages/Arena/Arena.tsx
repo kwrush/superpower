@@ -22,7 +22,9 @@ const Arena: FC = () => {
           <Helmet>
             <title>{`Arena-${player.name} v ${opponent.name}`}</title>
           </Helmet>
-          <h2 className={styles.header}>{`${player.name} v ${opponent.name}`}</h2>
+          <h2
+            className={styles.header}
+          >{`${player.name} v ${opponent.name}`}</h2>
           <section className={styles.arena}>
             <PowersList
               color="#395abd"

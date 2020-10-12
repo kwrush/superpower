@@ -1,5 +1,9 @@
 import React from 'react';
-import { render, fireEvent, getByPlaceholderText } from '@testing-library/react';
+import {
+  render,
+  fireEvent,
+  getByPlaceholderText,
+} from '@testing-library/react';
 import SearchInput from '..';
 
 describe('SearchInput', () => {

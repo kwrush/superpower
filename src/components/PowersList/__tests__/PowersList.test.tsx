@@ -14,7 +14,12 @@ describe('PowersList', () => {
 
   it('should render with good alignment', () => {
     const { container } = render(
-      <PowersList name="hero" avatar="image" alignment="good" powers={powers} />,
+      <PowersList
+        name="hero"
+        avatar="image"
+        alignment="good"
+        powers={powers}
+      />,
     );
 
     expect(container.firstChild).toMatchInlineSnapshot(`
@@ -250,7 +255,12 @@ describe('PowersList', () => {
 
   it('should render with neutral alignment', () => {
     const { container } = render(
-      <PowersList name="hero" avatar="image" alignment="neutral" powers={powers} />,
+      <PowersList
+        name="hero"
+        avatar="image"
+        alignment="neutral"
+        powers={powers}
+      />,
     );
 
     expect(container.firstChild).toMatchInlineSnapshot(`

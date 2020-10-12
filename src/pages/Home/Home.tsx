@@ -12,7 +12,9 @@ import useArena from '~app/hooks/useArena';
 import useSearchHero from '~app/hooks/useSearchHero';
 
 const Home: FC = () => {
-  const { arenaPlayers, clearSearchResult, addArenaPlayer } = useContext(HeroContext);
+  const { arenaPlayers, clearSearchResult, addArenaPlayer } = useContext(
+    HeroContext,
+  );
   const { isLoading } = useArena();
 
   const { isSearching, searchHero, searchResult } = useSearchHero();
@@ -34,7 +36,11 @@ const Home: FC = () => {
       return <Loader />;
     }
 
-    return arenaPlayers && <ArenaCard player={arenaPlayers[0]} opponent={arenaPlayers[1]} />;
+    return (
+      arenaPlayers && (
+        <ArenaCard player={arenaPlayers[0]} opponent={arenaPlayers[1]} />
+      )
+    );
   };
 
   return (

@@ -11,7 +11,11 @@ interface PowerRadarProps {
   children: (cx: number, cy: number, size: number) => ReactElement;
 }
 
-const PowerRadar: FC<PowerRadarProps> = ({ captions, scalesNumber = 5, children }) => {
+const PowerRadar: FC<PowerRadarProps> = ({
+  captions,
+  scalesNumber = 5,
+  children,
+}) => {
   const cx = 160;
   const cy = 120;
   const radius = 80;

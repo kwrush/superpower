@@ -26,8 +26,15 @@ const Profile: FC = () => {
           <header className={styles.header}>
             <h1>{hero.name}</h1>
           </header>
-          <HeroPowersProfile name={hero.name} avatar={hero.images.sm} powers={hero.powerstats} />
-          <HeroDetails appearance={hero.appearance} biography={hero.biography} />
+          <HeroPowersProfile
+            name={hero.name}
+            avatar={hero.images.sm}
+            powers={hero.powerstats}
+          />
+          <HeroDetails
+            appearance={hero.appearance}
+            biography={hero.biography}
+          />
         </>
       )}
     </Container>

@@ -1,8 +1,11 @@
-export const polarToX = (angle: number, distance: number) => Math.cos(angle) * distance;
+export const polarToX = (angle: number, distance: number) =>
+  Math.cos(angle) * distance;
 
-export const polarToY = (angle: number, distance: number) => Math.sin(angle) * distance;
+export const polarToY = (angle: number, distance: number) =>
+  Math.sin(angle) * distance;
 
-export const getAngle = (index: number, totalAngles: number) => (Math.PI * 2 * index) / totalAngles;
+export const getAngle = (index: number, totalAngles: number) =>
+  (Math.PI * 2 * index) / totalAngles;
 
 export const pointsToPath = (points: number[][]) => {
   let p = '';
@@ -16,4 +19,6 @@ export const pointsToPath = (points: number[][]) => {
 };
 
 export const pointsToPolyline = (points: Array<number[]>) =>
-  points.map((point) => `${point[0].toFixed(4)},${point[1].toFixed(4)}`).join(' ');
+  points
+    .map((point) => `${point[0].toFixed(4)},${point[1].toFixed(4)}`)
+    .join(' ');

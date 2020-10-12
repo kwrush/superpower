@@ -10,8 +10,14 @@ interface HeroPowersProfileProps {
   powers: PowerStatsAPI;
 }
 
-const HeroPowersProfile: FC<HeroPowersProfileProps> = ({ name, avatar, powers }) => {
-  const captions = Object.entries(powers).map(([power, value]) => `${power}(${value})`);
+const HeroPowersProfile: FC<HeroPowersProfileProps> = ({
+  name,
+  avatar,
+  powers,
+}) => {
+  const captions = Object.entries(powers).map(
+    ([power, value]) => `${power}(${value})`,
+  );
   const powerValues = Object.values(powers);
 
   return (
@@ -19,7 +25,13 @@ const HeroPowersProfile: FC<HeroPowersProfileProps> = ({ name, avatar, powers })
       <Avatar src={avatar} alt={name} />
       <PowerRadar captions={captions}>
         {(cx, cy, size) => (
-          <Powers powers={powerValues} cx={cx} cy={cy} size={size} color="#395abd" />
+          <Powers
+            powers={powerValues}
+            cx={cx}
+            cy={cy}
+            size={size}
+            color="#395abd"
+          />
         )}
       </PowerRadar>
     </section>

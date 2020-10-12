@@ -6,11 +6,24 @@ describe('PowerRadar', () => {
   it('should render PowerRadar with the given data', () => {
     const { container } = render(
       <PowerRadar
-        captions={['intelligence', 'power', 'strength', 'speed', 'durability', 'combat']}
+        captions={[
+          'intelligence',
+          'power',
+          'strength',
+          'speed',
+          'durability',
+          'combat',
+        ]}
         scalesNumber={5}
       >
         {(cx, cy, size) => (
-          <Powers powers={[90, 80, 50, 80, 90, 85]} cx={cx} cy={cy} size={size} color="#395abd" />
+          <Powers
+            powers={[90, 80, 50, 80, 90, 85]}
+            cx={cx}
+            cy={cy}
+            size={size}
+            color="#395abd"
+          />
         )}
       </PowerRadar>,
     );

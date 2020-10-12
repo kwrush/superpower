@@ -23,7 +23,9 @@ describe('HeroDetails', () => {
       alignment: 'good',
     };
 
-    const { container } = render(<HeroDetails biography={biography} appearance={appearance} />);
+    const { container } = render(
+      <HeroDetails biography={biography} appearance={appearance} />,
+    );
     expect(container.firstChild).toMatchInlineSnapshot(`
       <section
         class="details"

@@ -18,7 +18,11 @@ describe('HeroPowersProfile', () => {
     };
 
     const { container } = render(
-      <HeroPowersProfile name={data.name} avatar={data.name} powers={data.powers} />,
+      <HeroPowersProfile
+        name={data.name}
+        avatar={data.name}
+        powers={data.powers}
+      />,
     );
     expect(container.firstChild).toMatchInlineSnapshot(`
       <section

@@ -39,7 +39,9 @@ module.exports = {
                 ...restOptions,
                 modules: {
                   ...modules,
-                  localIdentName: `${dev ? '[name]__[local]__[hash:base64:5]' : '[hash:base64:5]'}`,
+                  localIdentName: `${
+                    dev ? '[name]__[local]__[hash:base64:5]' : '[hash:base64:5]'
+                  }`,
                 },
               },
             };

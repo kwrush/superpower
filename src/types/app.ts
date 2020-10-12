@@ -1,8 +1,6 @@
 import { HeroAPI } from './response';
 
-export type HeroEntity = Readonly<{
-  [id: number]: HeroAPI;
-}>;
+export type HeroEntity = Record<number, HeroAPI>;
 
 export interface HeroContextType {
   arenaPlayers?: HeroAPI[];

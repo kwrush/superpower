@@ -28,7 +28,10 @@ describe('api', () => {
     const { signal } = abortController;
     const data = await searchSuperHeroById(123, signal);
 
-    expect(request).toHaveBeenCalledWith('https://superhero-search.p.rapidapi.com/?id=123', signal);
+    expect(request).toHaveBeenCalledWith(
+      'https://superhero-search.p.rapidapi.com/?id=123',
+      signal,
+    );
     expect(data).toBe('data');
   });
 });

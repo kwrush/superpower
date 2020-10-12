@@ -8,12 +8,11 @@ const normalize = (heros: HeroAPI | HeroAPI[]): HeroEntity => {
     };
   }
 
-  return heros.reduce((acc, curr) => {
+  return heros.reduce<HeroEntity>((acc, curr) => {
     const { id } = curr;
-    return {
-      ...acc,
-      [id]: curr,
-    };
+    acc[id] = curr;
+
+    return acc;
   }, {});
 };
 

@@ -12,7 +12,9 @@ type ArenaData = {
 
 const useArenaData = () => {
   const { slug } = useParams();
-  const [playerIds] = useState((slug as string).split('v').map((id) => parseInt(id, 10)));
+  const [playerIds] = useState(
+    (slug as string).split('v').map((id) => parseInt(id, 10)),
+  );
 
   const { arenaPlayers } = useContext(HeroContext);
   const [arenaData, setArenaData] = useState<ArenaData[] | undefined>();
