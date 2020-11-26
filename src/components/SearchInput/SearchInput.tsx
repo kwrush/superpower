@@ -1,21 +1,24 @@
 import React, { FC, useCallback, KeyboardEvent, ChangeEvent } from 'react';
 import styles from './SearchInput.module.css';
+import { useAbortSearch } from '~app/hooks/useSearch';
 
 const ENTER_KEY_CODE = 13;
 
 interface SearchInputProps {
-  onSearch: (query: string) => void;
+  onSearch: (query: string, signal: AbortSignal) => void;
   onClear: () => void;
 }
 
 const SearchInput: FC<SearchInputProps> = ({ onSearch, onClear }) => {
+  const abortSignal = useAbortSearch();
+
   const handleKeyUp = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.keyCode === ENTER_KEY_CODE) {
-        onSearch(e.currentTarget.value);
+        onSearch(e.currentTarget.value, abortSignal);
       }
     },
-    [onSearch],
+    [onSearch, abortSignal],
   );
 
   const handleOnChange = useCallback(

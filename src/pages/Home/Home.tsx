@@ -9,12 +9,12 @@ import Loader from '~app/components/Loader';
 import ArenaCard from '~app/components/ArenaCard';
 import SearchResult from '~app/components/SearchResult';
 import useArena from '~app/hooks/useArena';
-import useSearchHero from '~app/hooks/useSearchHero';
 import useHeroStore, {
   HeroStore,
   selectArenaPlayers,
 } from '~app/hooks/useHeroStore';
 import NoResult from '~app/components/NoResult';
+import useSearch from '~app/hooks/useSearch';
 
 const selectHomeState = (state: HeroStore) => ({
   arenaPlayers: selectArenaPlayers(state),
@@ -23,12 +23,12 @@ const selectHomeState = (state: HeroStore) => ({
 });
 
 const Home: FC = () => {
-  const { arenaPlayers, clearSearchResult, addArenaPlayer } = useHeroStore(
+  const { arenaPlayers, addArenaPlayer } = useHeroStore(
     selectHomeState,
     shallow,
   );
   const { isLoading } = useArena();
-  const { isSearching, searchHero, searchResult } = useSearchHero();
+  const { isSearching, searchResult, search, clearSearchResult } = useSearch();
 
   const renderSearch = () => {
     if (isSearching) {
@@ -69,7 +69,7 @@ const Home: FC = () => {
       </Helmet>
       <Header />
       <div className={styles.search}>
-        <SearchInput onSearch={searchHero} onClear={clearSearchResult} />
+        <SearchInput onSearch={search} onClear={clearSearchResult} />
       </div>
       {renderSearch()}
       {renderArena()}

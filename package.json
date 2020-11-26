@@ -28,6 +28,7 @@
     "deploy": "git push heroku master"
   },
   "dependencies": {
+    "abort-controller": "^3.0.0",
     "classnames": "^2.2.6",
     "express": "^4.17.1",
     "razzle": "^3.1.0",
