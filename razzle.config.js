@@ -18,8 +18,12 @@ module.exports = {
       },
     },
   ],
-  modify: (defaultConfig, { dev, target }, webpack) => {
-    const config = { ...defaultConfig };
+  modifyWebpackConfig: ({
+    env: { dev, target },
+    webpackConfig,
+    webpackObject,
+  }) => {
+    const config = { ...webpackConfig };
 
     config.module.rules = config.module.rules.map((rule) => {
       if (rule.test && !!'.module.css'.match(rule.test)) {
@@ -62,6 +66,6 @@ module.exports = {
       '~app': path.resolve(__dirname, './src'),
     };
 
-    return razzleHeroku(config, { target, dev }, webpack);
+    return razzleHeroku(config, { target, dev }, webpackObject);
   },
 };
