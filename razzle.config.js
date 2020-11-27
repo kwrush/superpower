@@ -28,11 +28,7 @@ module.exports = {
     config.module.rules = config.module.rules.map((rule) => {
       if (rule.test && !!'.module.css'.match(rule.test)) {
         const use = rule.use.map((useConfig) => {
-          if (
-            useConfig.options &&
-            useConfig.options.modules &&
-            useConfig.options.modules.localIdentName
-          ) {
+          if (useConfig.options) {
             const {
               options: { modules, ...restOptions },
               ...rest

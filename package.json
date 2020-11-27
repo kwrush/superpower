@@ -2,7 +2,7 @@
   "name": "superpower",
   "version": "0.1.0",
   "private": true,
-  "description": "A tiny app for infomation of superhero and supervillain",
+  "description": "A tiny app provides data of superhero and supervillain",
   "license": "MIT",
   "engines": {
     "node": "14.x",
