@@ -1,21 +1,21 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { Helmet } from 'react-helmet';
 import Container from '~app/components/Container';
 import PowerRadar, { Powers } from '~app/components/PowerRadar';
 import PowersList from '~app/components/PowersList';
 import useArena from '~app/hooks/useArena';
 import Loader from '~app/components/Loader';
-import useArenaData from '~app/hooks/useArenaData';
 import NoResult from '~app/components/NoResult';
 import styles from './Arena.module.css';
 
 const Arena: FC = () => {
-  const { playerIds, arenaData } = useArenaData();
-  const { isLoading } = useArena(playerIds);
+  const { isFetching, arenaPlayers } = useArena();
 
-  const arenaContent = useMemo(() => {
-    if (arenaData) {
-      const [player, opponent] = arenaData;
+  const arenaContent = () => {
+    if (arenaPlayers) {
+      const [player, opponent] = arenaPlayers;
+      const playerColor = '#395abd';
+      const opponentColor = '#be1417';
 
       return (
         <>
@@ -27,38 +27,38 @@ const Arena: FC = () => {
           >{`${player.name} v ${opponent.name}`}</h2>
           <section className={styles.arena}>
             <PowersList
-              color="#395abd"
-              avatar={player.avatar}
+              color={playerColor}
+              avatar={player.images.sm}
               name={player.name}
-              alignment={player.alignment}
-              powers={player.powers}
+              alignment={player.biography.alignment}
+              powers={player.powerstats}
             />
-            <PowerRadar captions={Object.keys(player.powers)}>
+            <PowerRadar captions={Object.keys(player.powerstats)}>
               {(cx, cy, size) => (
                 <>
                   <Powers
-                    powers={Object.values(opponent.powers)}
+                    powers={Object.values(opponent.powerstats)}
                     cx={cx}
                     cy={cy}
                     size={size}
-                    color="#be1417"
+                    color={opponentColor}
                   />
                   <Powers
-                    powers={Object.values(player.powers)}
+                    powers={Object.values(player.powerstats)}
                     cx={cx}
                     cy={cy}
                     size={size}
-                    color="#395abd"
+                    color={playerColor}
                   />
                 </>
               )}
             </PowerRadar>
             <PowersList
-              color="#be1417"
-              avatar={opponent.avatar}
+              color={opponentColor}
+              avatar={opponent.images.sm}
               name={opponent.name}
-              alignment={opponent.alignment}
-              powers={opponent.powers}
+              alignment={opponent.biography.alignment}
+              powers={opponent.powerstats}
             />
           </section>
         </>
@@ -66,9 +66,9 @@ const Arena: FC = () => {
     }
 
     return <NoResult />;
-  }, [arenaData]);
+  };
 
-  return <Container>{isLoading ? <Loader /> : arenaContent}</Container>;
+  return <Container>{isFetching ? <Loader /> : arenaContent()}</Container>;
 };
 
 export default Arena;

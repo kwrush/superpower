@@ -6,7 +6,7 @@ const delay = (mills: number) =>
 
 export default (heroIds: number[], signal: AbortSignal) => {
   return heroIds.reduce<Promise<HeroAPI[]>>((accumulatedPromise, nextId) => {
-    // Have to add a delay otherwise http 429 error occurs
+    // Have to add a delay to avoid http 429 error
     return accumulatedPromise.then((results) =>
       delay(1000).then(() =>
         searchSuperHeroById(nextId, signal).then((nextHeroData) => [

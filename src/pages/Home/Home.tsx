@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import shallow from 'zustand/shallow';
+import React, { FC, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '~app/components/Header';
 import SearchInput from '~app/components/SearchInput';
@@ -8,27 +7,15 @@ import Container from '~app/components/Container';
 import Loader from '~app/components/Loader';
 import ArenaCard from '~app/components/ArenaCard';
 import SearchResult from '~app/components/SearchResult';
-import useArena from '~app/hooks/useArena';
-import useHeroStore, {
-  HeroStore,
-  selectArenaPlayers,
-} from '~app/hooks/useHeroStore';
 import NoResult from '~app/components/NoResult';
 import useSearch from '~app/hooks/useSearch';
-
-const selectHomeState = (state: HeroStore) => ({
-  arenaPlayers: selectArenaPlayers(state),
-  clearSearchResult: state.clearSearchResult,
-  addArenaPlayer: state.addArenaPlayer,
-});
+import useArena from '~app/hooks/useArena';
+import useAbortSignal from '~app/hooks/useAbortSignal';
 
 const Home: FC = () => {
-  const { arenaPlayers, addArenaPlayer } = useHeroStore(
-    selectHomeState,
-    shallow,
-  );
-  const { isLoading } = useArena();
+  const { isFetching, arenaPlayers, addArenaPlayer, initArena } = useArena();
   const { isSearching, searchResult, search, clearSearchResult } = useSearch();
+  const abortSignal = useAbortSignal();
 
   const renderSearch = () => {
     if (isSearching) {
@@ -50,17 +37,17 @@ const Home: FC = () => {
     );
   };
 
-  const renderArena = () => {
-    if (isLoading) {
+  const ArenaContent = useMemo(() => {
+    if (isFetching) {
       return <Loader />;
     }
 
-    return (
-      arenaPlayers && (
-        <ArenaCard player={arenaPlayers[0]} opponent={arenaPlayers[1]} />
-      )
-    );
-  };
+    return arenaPlayers && <ArenaCard players={arenaPlayers} />;
+  }, [isFetching, arenaPlayers]);
+
+  useEffect(() => {
+    initArena({ signal: abortSignal });
+  }, [initArena, abortSignal]);
 
   return (
     <Container>
@@ -72,7 +59,7 @@ const Home: FC = () => {
         <SearchInput onSearch={search} onClear={clearSearchResult} />
       </div>
       {renderSearch()}
-      {renderArena()}
+      {ArenaContent}
     </Container>
   );
 };

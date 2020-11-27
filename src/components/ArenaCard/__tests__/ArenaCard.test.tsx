@@ -15,9 +15,10 @@ describe('AreanCard', () => {
     },
   };
   it('should render', () => {
+    const players = [player, { ...player, id: 456 }] as any;
     const { container } = render(
       <MemoryRouter>
-        <ArenaCard player={player as any} opponent={player as any} />
+        <ArenaCard players={players} />
       </MemoryRouter>,
     );
 
@@ -63,7 +64,7 @@ describe('AreanCard', () => {
           >
             <a
               class="card-good card"
-              href="/profile/123-hero"
+              href="/profile/456-hero"
             >
               <img
                 alt="hero"
@@ -80,7 +81,7 @@ describe('AreanCard', () => {
         </ul>
         <a
           class="link"
-          href="/arena/123v123"
+          href="/arena/123v456"
         >
           Compare
         </a>

@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
 import create from 'zustand';
 import shallow from 'zustand/shallow';
-import AbortController from 'abort-controller';
 import { HeroAPI } from '~app/types/response';
 import { searchSuperHeroByName } from '~app/lib/api';
 
@@ -13,15 +11,8 @@ export type SearchStore = {
 };
 
 export const searchHero = async (query: string, signal: AbortSignal) => {
-  let result = null;
-  try {
-    const formattedQuery = query.replace(/\s+/, '-');
-    result = await searchSuperHeroByName(formattedQuery, signal);
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
-  }
-
+  const formattedQuery = query.replace(/\s+/, '-');
+  const result = await searchSuperHeroByName(formattedQuery, signal);
   return result;
 };
 
@@ -31,29 +22,18 @@ export const useSearchStore = create<SearchStore>((set) => ({
     set((state) => ({ ...state, searchResult: undefined })),
   search: async (query, signal) => {
     set((state) => ({ ...state, isSearching: true }));
-    const result = await searchHero(query, signal);
+    let result: HeroAPI | null = null;
+    try {
+      result = await searchHero(query, signal);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+    }
     set((state) => ({ ...state, isSearching: false, searchResult: result }));
   },
 }));
 
-export const useAbortSearch = () => {
-  const [abortController] = useState(new AbortController());
-  useEffect(() => {
-    return () => abortController.abort();
-  }, [abortController]);
-
-  return abortController.signal;
-};
-
 const useSearch = (): SearchStore =>
-  useSearchStore(
-    (state) => ({
-      isSearching: state.isSearching,
-      searchResult: state.searchResult,
-      search: state.search,
-      clearSearchResult: state.clearSearchResult,
-    }),
-    shallow,
-  );
+  useSearchStore((state) => ({ ...state }), shallow);
 
 export default useSearch;

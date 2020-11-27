@@ -33,10 +33,10 @@ module.exports = {
             useConfig.options.modules &&
             useConfig.options.modules.localIdentName
           ) {
-            const { options, ...rest } = useConfig;
-            // omit minimize which fails the build process
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { modules, minimize, ...restOptions } = options;
+            const {
+              options: { modules, ...restOptions },
+              ...rest
+            } = useConfig;
             return {
               ...rest,
               options: {

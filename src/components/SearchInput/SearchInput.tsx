@@ -1,6 +1,6 @@
 import React, { FC, useCallback, KeyboardEvent, ChangeEvent } from 'react';
 import styles from './SearchInput.module.css';
-import { useAbortSearch } from '~app/hooks/useSearch';
+import useAbortSignal from '~app/hooks/useAbortSignal';
 
 const ENTER_KEY_CODE = 13;
 
@@ -10,7 +10,7 @@ interface SearchInputProps {
 }
 
 const SearchInput: FC<SearchInputProps> = ({ onSearch, onClear }) => {
-  const abortSignal = useAbortSearch();
+  const abortSignal = useAbortSignal();
 
   const handleKeyUp = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
