@@ -5,7 +5,7 @@ import getHeros from '~app/lib/getHeros';
 import randomHeros from '~app/lib/randomHeros';
 
 export type FetchArenaPlayersPayload = {
-  playerIds?: number[];
+  playerNames?: string[];
   signal: AbortSignal;
 };
 
@@ -29,12 +29,12 @@ export const useArenaStore = create<ArenaStore>((set, get) => ({
       return { ...state, arenaPlayers: newPlayers };
     });
   },
-  initArena: async ({ playerIds, signal }) => {
+  initArena: async ({ playerNames, signal }) => {
     const { arenaPlayers } = get();
     if (!arenaPlayers) {
       set((state) => ({ ...state, isFetching: true }));
       try {
-        const players = await getHeros(playerIds ?? randomHeros(2), signal);
+        const players = await getHeros(playerNames ?? randomHeros(2), signal);
         set((state) => ({
           ...state,
           arenaPlayers: players,

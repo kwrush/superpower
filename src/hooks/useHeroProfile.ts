@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from 'react';
-import { searchSuperHeroById } from '~app/lib/api';
+import { searchSuperHeroByName } from '~app/lib/api';
 import { HeroAPI } from '~app/types/response';
 import useArena from './useArena';
 import useSearch from './useSearch';
 import useAbortSignal from './useAbortSignal';
 
-const useHeroProfile = (heroId: number) => {
+const useHeroProfile = (heroName: string) => {
   const [hero, setHero] = useState<HeroAPI>();
   const [isFetching, setIsFetching] = useState(true);
   const { arenaPlayers } = useArena();
@@ -13,18 +13,18 @@ const useHeroProfile = (heroId: number) => {
   const abortSignal = useAbortSignal();
 
   const fetchHero = useCallback(
-    async (id: number, signal: AbortSignal) => {
+    async (name: string, signal: AbortSignal) => {
       try {
         const cachedData = arenaPlayers
           ? [...arenaPlayers, searchResult]
           : [searchResult];
-        const localHero = cachedData?.find((local) => local?.id === id);
+        const localHero = cachedData?.find((local) => local?.name === name);
 
         if (localHero) {
           setHero(localHero);
         } else {
           setIsFetching(true);
-          const data = await searchSuperHeroById(id, signal);
+          const data = await searchSuperHeroByName(name, signal);
           setHero(data);
         }
       } catch (err) {
@@ -38,8 +38,8 @@ const useHeroProfile = (heroId: number) => {
   );
 
   useEffect(() => {
-    fetchHero(heroId, abortSignal);
-  }, [heroId, fetchHero, abortSignal]);
+    fetchHero(heroName, abortSignal);
+  }, [heroName, fetchHero, abortSignal]);
 
   return { hero, isFetching };
 };

@@ -23,4 +23,4 @@ const HEROS = [
 export default (amount: number) =>
   HEROS.sort(() => 0.5 - Math.random())
     .slice(0, amount)
-    .map((hero) => hero.id);
+    .map((hero) => hero.name);

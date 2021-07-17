@@ -11,8 +11,8 @@ import styles from './Profile.module.css';
 
 const Profile: FC = () => {
   const { slug } = useParams();
-  const id = parseInt((slug as string).split('-')[0], 10);
-  const { hero, isFetching } = useHeroProfile(id);
+  const name = (slug as string).split('-').slice(1).join('');
+  const { hero, isFetching } = useHeroProfile(name);
 
   return (
     <Container>
