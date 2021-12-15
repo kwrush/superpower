@@ -1,25 +1,20 @@
 {
-  "extends": "./paths.json",
   "compilerOptions": {
-    "target": "es2019",
-    "lib": ["es2017", "dom"],
-    "jsx": "react",
-    "sourceMap": true,
-    "inlineSourceMap": false,
-    "downlevelIteration": true,
-    "noEmit": true,
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
     "strict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "*.d.ts"],
-  "exclude": ["node_modules", "build"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
