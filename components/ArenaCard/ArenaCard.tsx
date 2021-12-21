@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { HeroAPI } from '../../types/response';
+import { HeroAPI } from '../../types/api.types';
 import CharacterCard from '../CharacterCard';
 import styles from './ArenaCard.module.css';
 
@@ -22,12 +22,12 @@ const ArenaCard: FC<ArenaCardProps> = ({ players }) => {
       </h3>
       <ul className={styles.players}>
         {players.map(
-          ({ id, name, images: { sm }, biography: { alignment } }) => (
+          ({ id, name, image: { url }, biography: { alignment } }) => (
             <li key={id} className={styles.player}>
               <CharacterCard
                 id={id}
                 name={name}
-                image={sm}
+                image={url}
                 alignment={alignment}
               />
             </li>

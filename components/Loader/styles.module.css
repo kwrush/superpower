@@ -1,0 +1,21 @@
+.loader {
+  display: flex;
+  margin: 0 auto;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  animation: flip infinite linear 1s;
+}
+
+@keyframes flip {
+  from {
+    transform: perspective(80px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(80px) rotateY(360deg);
+  }
+}

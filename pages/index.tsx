@@ -1,66 +1,45 @@
-import React, { FC, useEffect, useMemo } from 'react';
-import Header from '../components/Header';
-import SearchInput from '../components/SearchInput';
-import styles from '../styles/Home.module.css';
-import Container from '../components/Container';
-import Loader from '../components/Loader';
-import ArenaCard from '../components/ArenaCard';
-import SearchResult from '../components/SearchResult';
-import NoResult from '../components/NoResult';
-import useSearch from '../hooks/useSearch';
-import useArena from '../hooks/useArena';
-import useAbortSignal from '../hooks/useAbortSignal';
+import { FC } from 'react';
 import Head from 'next/head';
+import { Hero } from '../types/app.types';
+import Header from 'components/header';
+import Loader from 'components/loader';
+import SearchResults from 'components/search-results';
+import NoResult from 'components/no-result';
+import Searchbox from 'components/searchbox';
+import useSearch from 'hooks/use-search';
+import useProfile from 'hooks/use-profile';
 
-const Home: FC = () => {
-  const { isFetching, arenaPlayers, addArenaPlayer, initArena } = useArena();
-  const { isSearching, searchResult, search, clearSearchResult } = useSearch();
-  const abortSignal = useAbortSignal();
+interface Props {
+  battle: Hero[];
+}
 
-  const renderSearch = () => {
-    if (isSearching) {
-      return <Loader />;
-    }
-
-    if (searchResult === null) {
-      return <NoResult />;
-    }
-
-    return (
-      searchResult && (
-        <SearchResult
-          searchResult={searchResult}
-          addPlayer={addArenaPlayer}
-          onClear={clearSearchResult}
-        />
-      )
-    );
-  };
-
-  const ArenaContent = useMemo(() => {
-    if (isFetching) {
-      return <Loader />;
-    }
-
-    return arenaPlayers && <ArenaCard players={arenaPlayers} />;
-  }, [isFetching, arenaPlayers]);
-
-  useEffect(() => {
-    initArena({ signal: abortSignal });
-  }, [initArena, abortSignal]);
+const Home: FC<Props> = ({ battle }) => {
+  const { results, search, loading } = useSearch();
+  const { setProfile } = useProfile();
+  const showResults = !loading && results;
 
   return (
-    <Container>
+    <div>
       <Head>
         <title>Superpower</title>
+        <link rel="icon" href="/superman-logo.svg" />
       </Head>
-      <Header />
-      <div className={styles.search}>
-        <SearchInput onSearch={search} onClear={clearSearchResult} />
+      <div>
+        <Header />
+        <Searchbox onSearch={search} />
+        {loading && <Loader />}
+        {showResults &&
+          (results.length > 0 ? (
+            <SearchResults
+              results={results!}
+              checkProfile={setProfile}
+              addToBattle={(h) => console.log(h)}
+            />
+          ) : (
+            <NoResult />
+          ))}
       </div>
-      {renderSearch()}
-      {ArenaContent}
-    </Container>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import create from 'zustand';
 import shallow from 'zustand/shallow';
-import { HeroAPI } from '../types/response';
-import { searchSuperHeroByName } from '../lib/api';
+import { HeroAPI } from '../types/api.types';
+import { searchSuperHeroByName } from '../utils/services.client';
 
 export type SearchStore = {
   isSearching: boolean;
@@ -12,8 +12,8 @@ export type SearchStore = {
 
 export const searchHero = async (query: string, signal: AbortSignal) => {
   const formattedQuery = query.replace(/\s+/, '-');
-  const result = await searchSuperHeroByName(formattedQuery, signal);
-  return result;
+  const { results } = await searchSuperHeroByName(formattedQuery, signal);
+  return results[0];
 };
 
 export const useSearchStore = create<SearchStore>((set) => ({

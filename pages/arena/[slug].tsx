@@ -3,8 +3,8 @@ import Container from '../../components/Container';
 import PowerRadar, { Powers } from '../../components/PowerRadar';
 import PowersList from '../../components/PowersList';
 import useArena from '../../hooks/useArena';
-import Loader from '../../components/Loader';
-import NoResult from '../../components/NoResult';
+import Loader from '../../components/loader';
+import NoResult from '../../components/no-result';
 import styles from '../../styles/Arena.module.css';
 import Head from 'next/head';
 
@@ -28,7 +28,7 @@ const Arena: FC = () => {
           <section className={styles.arena}>
             <PowersList
               color={playerColor}
-              avatar={player.images.sm}
+              avatar={player.image.url}
               name={player.name}
               alignment={player.biography.alignment}
               powers={player.powerstats}
@@ -55,7 +55,7 @@ const Arena: FC = () => {
             </PowerRadar>
             <PowersList
               color={opponentColor}
-              avatar={opponent.images.sm}
+              avatar={opponent.image.url}
               name={opponent.name}
               alignment={opponent.biography.alignment}
               powers={opponent.powerstats}

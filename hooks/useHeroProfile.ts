@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
-import { searchSuperHeroByName } from '../lib/api';
-import { HeroAPI } from '../types/response';
+import { searchSuperHeroByName } from '../utils/services.client';
+import { HeroAPI } from '../types/api.types';
 import useArena from './useArena';
 import useSearch from './useSearch';
 import useAbortSignal from './useAbortSignal';
@@ -25,7 +25,7 @@ const useHeroProfile = (heroName: string) => {
         } else {
           setIsFetching(true);
           const data = await searchSuperHeroByName(name, signal);
-          setHero(data);
+          setHero(data.results[0]);
         }
       } catch (err) {
         // eslint-disable-next-line no-console

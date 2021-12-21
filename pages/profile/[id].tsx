@@ -1,45 +1,55 @@
-import React, { FC } from 'react';
-import HeroPowersProfile from '../../components/HeroPowersProfile';
-import NoResult from '../../components/NoResult';
-import useHeroProfile from '../../hooks/useHeroProfile';
-import Loader from '../../components/Loader';
-import HeroDetails from '../../components/HeroDetails';
+import { useEffect } from 'react';
+import PowerSummary from '../../components/power-summary';
+import ProfileSummary from '../../components/profile-summary';
 import Container from '../../components/Container';
 import styles from '../../styles/Profile.module.css';
 import Head from 'next/head';
+import { Hero } from '../../types/app.types';
+import useProfile from 'hooks/use-profile';
 import { useRouter } from 'next/router';
 
-const Profile: FC = () => {
-  const {
-    query: { id },
-  } = useRouter();
+export type Props = {
+  data: Hero;
+};
 
-  const name = (id as string).split('-').slice(1).join('');
-  const { hero, isFetching } = useHeroProfile(name);
+const Profile = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const { profile, fetchProfile } = useProfile();
+
+  useEffect(() => {
+    const verifyProfile = async () => {
+      if (profile) {
+        await fetchProfile(id as string);
+      }
+    };
+
+    verifyProfile();
+  }, [profile, id, fetchProfile]);
 
   return (
     <Container>
       <Head>
-        <title>{`Profile-${hero?.name}`}</title>
+        <title>{profile?.name}</title>
       </Head>
-      {isFetching && <Loader />}
-      {!isFetching && !hero && <NoResult />}
-      {!isFetching && hero && (
-        <>
-          <header className={styles.header}>
-            <h1>{hero.name}</h1>
-          </header>
-          <HeroPowersProfile
-            name={hero.name}
-            avatar={hero.images.sm}
-            powers={hero.powerstats}
-          />
-          <HeroDetails
-            appearance={hero.appearance}
-            biography={hero.biography}
-          />
-        </>
-      )}
+      <>
+        <header className={styles.header}>
+          <h1>{profile?.name}</h1>
+        </header>
+        {profile && (
+          <>
+            <PowerSummary
+              name={profile.name}
+              avatar={profile.image.url}
+              powers={profile.powerstats}
+            />
+            <ProfileSummary
+              appearance={profile.appearance}
+              biography={profile.biography}
+            />
+          </>
+        )}
+      </>
     </Container>
   );
 };

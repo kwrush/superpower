@@ -1,0 +1,22 @@
+.avatar {
+  display: flex;
+  margin: 0;
+}
+
+.avatar-s {
+  width: 48px;
+}
+
+.avatar-m {
+  width: 120px;
+}
+
+.avatar-l {
+  width: 150px;
+}
+
+.image {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}

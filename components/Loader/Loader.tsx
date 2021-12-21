@@ -1,10 +1,17 @@
-import React, { FC } from 'react';
-import supermanLogo from './superman-logo.svg';
-import styles from './Loader.module.css';
+import { FC } from 'react';
+import Image from 'next/image';
+import supermanLogo from 'public/superman-logo.svg';
+import styles from './styles.module.css';
 
 const Loader: FC = () => (
   <div className={styles.loader}>
-    <img className={styles.logo} src={supermanLogo} alt="logo" />
+    <Image
+      className={styles.logo}
+      src={supermanLogo}
+      alt="logo"
+      width="100%"
+      height="100%"
+    />
   </div>
 );
 

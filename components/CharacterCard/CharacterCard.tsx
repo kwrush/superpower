@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { Alignment } from '../../types/response';
+import { Alignment } from '../../types/api.types';
 import styles from './CharacterCard.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface CharacterCardProps {
   id: number;
@@ -23,7 +24,7 @@ const CharacterCard: FC<CharacterCardProps> = ({
   return (
     <Link href={`/profile/${slug}`}>
       <a className={cardClasses}>
-        <img className={styles['card-image']} src={image} alt={name} />
+        <Image className={styles['card-image']} src={image} alt={name} />
         <p className={styles['card-caption']}>{name}</p>
       </a>
     </Link>

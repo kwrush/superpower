@@ -1,8 +1,7 @@
 import create from 'zustand';
 import shallow from 'zustand/shallow';
-import { HeroAPI } from '../types/response';
-import getHeros from '../lib/getHeros';
-import randomHeros from '../lib/randomHeros';
+import { getRandomHeros } from '../utils/services.client';
+import { HeroAPI } from '../types/api.types';
 
 export type FetchArenaPlayersPayload = {
   playerNames?: string[];
@@ -34,7 +33,7 @@ export const useArenaStore = create<ArenaStore>((set, get) => ({
     if (!arenaPlayers) {
       set((state) => ({ ...state, isFetching: true }));
       try {
-        const players = await getHeros(playerNames ?? randomHeros(2), signal);
+        const players = await getRandomHeros(signal);
         set((state) => ({
           ...state,
           arenaPlayers: players,

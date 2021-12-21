@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Container from '../components/Container';
-import NoResult from '../components/NoResult';
+import NoResult from '../components/no-result';
 
 const NotFound: FC = () => (
   <Container>

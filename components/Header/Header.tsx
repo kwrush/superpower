@@ -1,8 +1,8 @@
+import React from 'react';
 import Link from 'next/link';
-import React, { FC } from 'react';
-import styles from './Header.module.css';
+import styles from './styles.module.css';
 
-const Header: FC = () => {
+const Header = () => {
   return (
     <header className={styles.header}>
       <h2>
