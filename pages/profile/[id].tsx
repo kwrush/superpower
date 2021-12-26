@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import PowerSummary from '../../components/power-summary';
 import ProfileSummary from '../../components/profile-summary';
-import Container from '../../components/Container';
+import Container from '../../components/container';
 import styles from '../../styles/Profile.module.css';
 import Head from 'next/head';
 import { Hero } from '../../types/app.types';

@@ -1,19 +1,32 @@
-import React, { FC } from 'react';
-import Container from '../../components/Container';
-import PowerRadar, { Powers } from '../../components/PowerRadar';
-import PowersList from '../../components/PowersList';
-import useArena from '../../hooks/useArena';
+import React, { FC, useEffect } from 'react';
+import Container from '../../components/container';
+import PowerRadar, { Powers } from '../../components/power-radar';
+import PowerStats from '../../components/power-stats';
 import Loader from '../../components/loader';
 import NoResult from '../../components/no-result';
 import styles from '../../styles/Arena.module.css';
 import Head from 'next/head';
+import useBattle from 'hooks/use-battle';
+import { useRouter } from 'next/router';
 
-const Arena: FC = () => {
-  const { isFetching, arenaPlayers } = useArena();
+const Battle: FC = () => {
+  const { battle, loading, fetchBattle } = useBattle();
+  const router = useRouter();
+  const { slug } = router.query;
+
+  useEffect(() => {
+    const verfiyBattle = async () => {
+      if (!battle && slug) {
+        fetchBattle((slug as string).split('v'));
+      }
+    };
+
+    verfiyBattle();
+  }, [slug, fetchBattle, battle]);
 
   const arenaContent = () => {
-    if (arenaPlayers) {
-      const [player, opponent] = arenaPlayers;
+    if (battle) {
+      const [player, opponent] = battle;
       const playerColor = '#395abd';
       const opponentColor = '#be1417';
 
@@ -26,7 +39,7 @@ const Arena: FC = () => {
             className={styles.header}
           >{`${player.name} v ${opponent.name}`}</h2>
           <section className={styles.arena}>
-            <PowersList
+            <PowerStats
               color={playerColor}
               avatar={player.image.url}
               name={player.name}
@@ -53,7 +66,7 @@ const Arena: FC = () => {
                 </>
               )}
             </PowerRadar>
-            <PowersList
+            <PowerStats
               color={opponentColor}
               avatar={opponent.image.url}
               name={opponent.name}
@@ -68,7 +81,7 @@ const Arena: FC = () => {
     return <NoResult />;
   };
 
-  return <Container>{isFetching ? <Loader /> : arenaContent()}</Container>;
+  return <Container>{loading ? <Loader /> : arenaContent()}</Container>;
 };
 
-export default Arena;
+export default Battle;

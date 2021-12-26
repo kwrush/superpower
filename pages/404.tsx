@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import Container from '../components/Container';
+import { FC } from 'react';
+import Container from '../components/container';
 import NoResult from '../components/no-result';
 
-const NotFound: FC = () => (
+const NotFound = () => (
   <Container>
     <NoResult />
     <p style={{ textAlign: 'center' }}>

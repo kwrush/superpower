@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getHero } from '../../../utils/services';
+import { randomBattle } from '../../../utils/services';
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,7 +9,7 @@ export default async function handler(
     return res.status(404).end();
   }
 
-  const { id } = req.query;
-  const data = await getHero(id as string);
-  res.status(200).json(DataTransferItemList);
+  const data = await randomBattle();
+
+  res.status(200).json(data);
 }

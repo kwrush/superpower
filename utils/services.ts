@@ -23,11 +23,6 @@ export const searchByName = async (name: string) => {
   return data;
 };
 
-export const searchSuperHeroByName = async (
-  name: string,
-  signal?: AbortSignal,
-) => searchByName(name);
-
 export const getHero = async (id: string) => {
   const data = await request<HeroAPI | ErrorAPI>(`${API_URL}/${id}`);
 
@@ -39,4 +34,4 @@ export const getHero = async (id: string) => {
 };
 
 export const randomBattle = async () =>
-  Promise.all(randomHeros(2).map(({ id }) => getHero(id.toString())));
+  Promise.all(randomHeros(2).map((id) => getHero(`${id}`)));

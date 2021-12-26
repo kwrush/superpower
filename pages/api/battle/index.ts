@@ -9,7 +9,10 @@ export default async function handler(
     return res.status(404).end();
   }
 
-  const { id } = req.query;
-  const data = await getHero(id as string);
-  res.status(200).json(DataTransferItemList);
+  const { ids } = req.query;
+  const fetchIds = (ids as string).split(',');
+
+  const data = await Promise.all(fetchIds.map((id) => getHero(id)));
+
+  res.status(200).json(data);
 }

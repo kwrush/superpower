@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import styles from './styles.module.css';
 import Scales from './scales';
 import Axes from './axes';

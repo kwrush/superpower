@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import classNames from 'classnames';
 import { PowerStatsAPI, Alignment } from '../../types/api.types';
 import Avatar from '../avatar';

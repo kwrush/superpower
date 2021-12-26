@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { BiographyAPI, AppearanceAPI } from '../../types/api.types';
 import styles from './styles.module.css';
 
