@@ -1,15 +1,16 @@
 import React, { FC, useEffect } from 'react';
-import Container from '../../components/container';
-import PowerRadar, { Powers } from '../../components/power-radar';
-import PowerStats from '../../components/power-stats';
-import Loader from '../../components/loader';
-import NoResult from '../../components/no-result';
-import styles from '../../styles/Arena.module.css';
 import Head from 'next/head';
-import useBattle from 'hooks/use-battle';
 import { useRouter } from 'next/router';
+import Container from 'components/container';
+import Header from 'components/header';
+import Loader from 'components/loader';
+import NoResult from 'components/no-result';
+import PowerRadar, { Powers } from 'components/power-radar';
+import PowerStats from 'components/power-stats';
+import useBattle from 'hooks/use-battle';
+import styles from 'styles/battle.module.css';
 
-const Battle: FC = () => {
+export default function Battle() {
   const { battle, loading, fetchBattle } = useBattle();
   const router = useRouter();
   const { slug } = router.query;
@@ -35,6 +36,7 @@ const Battle: FC = () => {
           <Head>
             <title>{`Arena-${player.name} v ${opponent.name}`}</title>
           </Head>
+          <Header />
           <h2
             className={styles.header}
           >{`${player.name} v ${opponent.name}`}</h2>
@@ -82,6 +84,4 @@ const Battle: FC = () => {
   };
 
   return <Container>{loading ? <Loader /> : arenaContent()}</Container>;
-};
-
-export default Battle;
+}

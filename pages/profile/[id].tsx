@@ -1,25 +1,26 @@
 import { useEffect } from 'react';
-import PowerSummary from '../../components/power-summary';
-import ProfileSummary from '../../components/profile-summary';
-import Container from '../../components/container';
-import styles from '../../styles/Profile.module.css';
 import Head from 'next/head';
-import { Hero } from '../../types/app.types';
-import useProfile from 'hooks/use-profile';
 import { useRouter } from 'next/router';
+import Container from 'components/container';
+import Header from 'components/header';
+import PowerSummary from 'components/power-summary';
+import ProfileSummary from 'components/profile-summary';
+import useProfile from 'hooks/use-profile';
+import styles from 'styles/profile.module.css';
+import { Hero } from 'types/app.types';
 
 export type Props = {
   data: Hero;
 };
 
-const Profile = () => {
+export default function Profile({ data }: Props) {
   const router = useRouter();
   const { id } = router.query;
   const { profile, fetchProfile } = useProfile();
 
   useEffect(() => {
     const verifyProfile = async () => {
-      if (profile) {
+      if (profile == null && id != null) {
         await fetchProfile(id as string);
       }
     };
@@ -33,6 +34,7 @@ const Profile = () => {
         <title>{profile?.name}</title>
       </Head>
       <>
+        <Header />
         <header className={styles.header}>
           <h1>{profile?.name}</h1>
         </header>
@@ -52,6 +54,4 @@ const Profile = () => {
       </>
     </Container>
   );
-};
-
-export default Profile;
+}

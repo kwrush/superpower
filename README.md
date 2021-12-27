@@ -1,31 +1,18 @@
-# Superpower
+# [Superpower](superpower-q65xb2zt5-kwrush.vercel.app)
 
-🦸‍♂️A tiny app for information of superhero and supervillain, simple and just for fun.
+🦸‍♂️ A tiny app for information of superhero and supervillain, simple and just for fun.
 
-Bootstapped with [Razzle](https://github.com/jaredpalmer/razzle)
+API is powered by [SuperheroAPI](https://superheroapi.com/).
 
-API is powered by [SuperHeroAPI](https://rapidapi.com/jakash1997/api/superhero-search)
+## Quick Start
 
-## Demo
-
-https://kw-superpower.herokuapp.com/
-
-## Install
-
-```bash
+```console
 git clone https://github.com/kwrush/superpower.git
 cd superpower
-yarn install
-yarn start
+touch .env.local
+echo "ACCESS_TOKEN=<Your access token>" > .env.local
+npm install
+npm run dev
 
 # open http://localhost:3000
-```
-
-To run a production build
-
-```bash
-yarn build
-yarn start:prod
-
-#open http://localhost:3000
 ```

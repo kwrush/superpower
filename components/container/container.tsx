@@ -1,12 +1,6 @@
-import { FC, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import styles from './styles.module.css';
 
-interface ContainerProps {
-  children?: ReactNode;
-}
-
-const Container: FC<ContainerProps> = ({ children }) => {
+export default function Container({ children }: PropsWithChildren<{}>) {
   return <div className={styles.container}>{children}</div>;
-};
-
-export default Container;
+}

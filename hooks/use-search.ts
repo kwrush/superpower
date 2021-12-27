@@ -1,7 +1,7 @@
-import create from 'zustand';
+import { SearchNameAPI } from 'types/api.types';
 import { Hero } from 'types/app.types';
 import request from 'utils/request';
-import { SearchNameAPI } from 'types/api.types';
+import create from 'zustand';
 
 interface SearchStore {
   results?: Hero[];

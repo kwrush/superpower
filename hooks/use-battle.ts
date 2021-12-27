@@ -1,7 +1,7 @@
-import create from 'zustand';
+import { HeroAPI } from 'types/api.types';
 import { Hero } from 'types/app.types';
 import request from 'utils/request';
-import { HeroAPI } from 'types/api.types';
+import create from 'zustand';
 
 interface BattleStore {
   battle?: Hero[];

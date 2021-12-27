@@ -1,5 +1,12 @@
 {
   "trailingComma": "all",
   "tabWidth": 2,
-  "singleQuote": true
+  "singleQuote": true,
+  "importOrder": [
+    "^(react|react-dom)$",
+    "^next(/(.*)?)$",
+    "<THIRD_PARTY_MODULES>",
+    "^[@/(.*)$]",
+    "^[./(.*)$]"
+  ]
 }

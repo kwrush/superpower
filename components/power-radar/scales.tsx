@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { getAngle, polarToX, polarToY, pointsToPath } from '../../utils/draw';
+import { getAngle, polarToX, polarToY, pointsToPath } from 'utils/draw';
 
 interface ScalesProps {
   polarNumber: number;

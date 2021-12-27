@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
+import Image from 'next/image';
 import classNames from 'classnames';
 import styles from './styles.module.css';
-import Image from 'next/image';
 
 interface AvatarProps {
   size?: 's' | 'm' | 'l';
@@ -9,7 +9,7 @@ interface AvatarProps {
   alt?: string;
 }
 
-const Avatar: FC<AvatarProps> = ({ size = 'm', src, alt = '' }) => {
+export default function Avatar({ size = 'm', src, alt = '' }: AvatarProps) {
   const classes = classNames(styles.avatar, styles[`avatar-${size}`]);
   return (
     <figure className={classes}>
@@ -17,11 +17,9 @@ const Avatar: FC<AvatarProps> = ({ size = 'm', src, alt = '' }) => {
         className={styles.image}
         src={src}
         alt={alt}
-        width="100%"
-        height="100%"
+        width={240}
+        height={320}
       />
     </figure>
   );
-};
-
-export default Avatar;
+}

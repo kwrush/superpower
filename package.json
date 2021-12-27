@@ -1,6 +1,9 @@
 {
   "name": "superpower",
   "private": true,
+  "engines": {
+    "node": "^14"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,11 +22,12 @@
     "zustand": "^3.6.7"
   },
   "devDependencies": {
-    "@types/classnames": "^2.3.1",
+    "@trivago/prettier-plugin-sort-imports": "^3.1.1",
     "@types/node": "16.11.13",
     "@types/react": "17.0.37",
     "eslint": "8.4.1",
     "eslint-config-next": "12.0.7",
+    "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.0",
     "lint-staged": "^12.1.2",
     "prettier": "^2.5.1",

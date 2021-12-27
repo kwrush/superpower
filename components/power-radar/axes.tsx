@@ -1,10 +1,5 @@
 import React, { FC } from 'react';
-import {
-  polarToX,
-  polarToY,
-  pointsToPolyline,
-  getAngle,
-} from '../../utils/draw';
+import { polarToX, polarToY, pointsToPolyline, getAngle } from 'utils/draw';
 
 interface AxesProps {
   axisLength: number;
@@ -13,7 +8,7 @@ interface AxesProps {
   cy: number;
 }
 
-const Axes: FC<AxesProps> = ({ axisLength, captions, cx, cy }) => {
+function Axes({ axisLength, captions, cx, cy }: AxesProps) {
   const radius = axisLength / 2;
   const axisNum = captions.length;
 
@@ -63,6 +58,6 @@ const Axes: FC<AxesProps> = ({ axisLength, captions, cx, cy }) => {
       ))}
     </>
   );
-};
+}
 
 export default React.memo(Axes);

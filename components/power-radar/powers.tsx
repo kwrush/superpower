@@ -1,5 +1,5 @@
-import React, { FC, useMemo } from 'react';
-import { getAngle, polarToX, polarToY, pointsToPath } from '../../utils/draw';
+import React, { useMemo } from 'react';
+import { getAngle, polarToX, polarToY, pointsToPath } from 'utils/draw';
 
 interface PowersProps {
   powers: number[];
@@ -10,14 +10,14 @@ interface PowersProps {
   opacity?: number;
 }
 
-const Powers: FC<PowersProps> = ({
+function Powers({
   powers,
   cx,
   cy,
   color = '#555',
   size,
   opacity = 0.2,
-}) => {
+}: PowersProps) {
   const stats = useMemo(() => {
     const points = powers.map((power, index, all) => {
       const angle = getAngle(index, all.length);
@@ -53,6 +53,6 @@ const Powers: FC<PowersProps> = ({
       />
     </g>
   );
-};
+}
 
 export default React.memo(Powers);

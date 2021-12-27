@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styles from './styles.module.css';
 
-const Header = () => {
+function Header() {
   return (
     <header className={styles.header}>
       <h2>
@@ -17,6 +17,6 @@ const Header = () => {
       </h2>
     </header>
   );
-};
+}
 
 export default React.memo(Header);

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { randomBattle } from '../../../utils/services';
+import { randomBattle } from 'utils/services';
 
 export default async function handler(
   req: NextApiRequest,

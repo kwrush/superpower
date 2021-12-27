@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { searchByName } from '../../utils/services';
+import { searchByName } from 'utils/services';
 
 export default async function handler(
   req: NextApiRequest,

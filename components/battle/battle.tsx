@@ -1,15 +1,16 @@
 import { FC } from 'react';
 import Link from 'next/link';
-import { Hero } from 'types/app.types';
 import CharacterCard from 'components/character-card';
+import useProfile from 'hooks/use-profile';
+import { Hero } from 'types/app.types';
 import styles from './styles.module.css';
 
 interface BattleProps {
   battle: Hero[];
   refresh: () => void;
 }
-
-const Battle: FC<BattleProps> = ({ battle, refresh }) => {
+export default function Battle({ battle, refresh }: BattleProps) {
+  const { setProfile } = useProfile();
   return (
     <section className={styles.battle}>
       <header className={styles.header}>
@@ -24,24 +25,24 @@ const Battle: FC<BattleProps> = ({ battle, refresh }) => {
         </div>
       </header>
       <ul className={styles.players}>
-        {battle.map(
-          ({ id, name, image: { url }, biography: { alignment } }) => (
-            <li key={id} className={styles.player}>
-              <CharacterCard
-                id={id}
-                name={name}
-                image={url}
-                alignment={alignment}
-              />
-            </li>
-          ),
-        )}
+        {battle.map((profile) => (
+          <li
+            key={profile.id}
+            className={styles.player}
+            onClick={() => setProfile(profile)}
+          >
+            <CharacterCard
+              id={profile.id}
+              name={profile.name}
+              image={profile.image.url}
+              alignment={profile.biography.alignment}
+            />
+          </li>
+        ))}
       </ul>
       <Link href={`/battle/${battle.map(({ id }) => id).join('v')}`}>
         <a className={styles.button}>Battle</a>
       </Link>
     </section>
   );
-};
-
-export default Battle;
+}

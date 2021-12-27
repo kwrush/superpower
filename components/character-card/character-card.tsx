@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { FC } from 'react';
-import { Alignment } from 'types/api.types';
 import Avatar from 'components/avatar';
+import { Alignment } from 'types/api.types';
 
 interface CharacterCardProps {
   id: string;
@@ -10,7 +9,7 @@ interface CharacterCardProps {
   image: string;
 }
 
-const CharacterCard: FC<CharacterCardProps> = ({ id, name, image }) => {
+export default function CharacterCard({ id, name, image }: CharacterCardProps) {
   return (
     <Link href={`/profile/${id}`} passHref>
       <a>
@@ -19,6 +18,4 @@ const CharacterCard: FC<CharacterCardProps> = ({ id, name, image }) => {
       </a>
     </Link>
   );
-};
-
-export default CharacterCard;
+}

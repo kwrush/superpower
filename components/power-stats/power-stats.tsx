@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import classNames from 'classnames';
 import { PowerStatsAPI, Alignment } from '../../types/api.types';
 import Avatar from '../avatar';
@@ -12,13 +11,13 @@ interface PowerStatsProps {
   powers: PowerStatsAPI;
 }
 
-const PowerStats: FC<PowerStatsProps> = ({
+export default function PowerStats({
   color = '#395abd',
   avatar,
   name,
   alignment,
   powers,
-}) => {
+}: PowerStatsProps) {
   const powersEntities = Object.entries(powers);
   const alignmentClasses = classNames(
     styles.alignment,
@@ -47,6 +46,4 @@ const PowerStats: FC<PowerStatsProps> = ({
       </ul>
     </div>
   );
-};
-
-export default PowerStats;
+}

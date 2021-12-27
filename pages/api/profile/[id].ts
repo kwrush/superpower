@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getHero } from '../../../utils/services';
+import { getHero } from 'utils/services';
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,5 +11,5 @@ export default async function handler(
 
   const { id } = req.query;
   const data = await getHero(id as string);
-  res.status(200).json(DataTransferItemList);
+  res.status(200).json(data);
 }

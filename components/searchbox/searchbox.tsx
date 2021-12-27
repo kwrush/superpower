@@ -1,11 +1,11 @@
-import { FC, KeyboardEvent, useCallback, useState } from 'react';
+import React, { KeyboardEvent, useCallback, useState } from 'react';
 import styles from './styles.module.css';
 
 interface SearchboxProps {
   onSearch: (query: string) => void;
 }
 
-const Searchbox: FC<SearchboxProps> = ({ onSearch }) => {
+function Searchbox({ onSearch }: SearchboxProps) {
   const [value, setValue] = useState<string>('');
 
   const handleSubmit = useCallback(
@@ -32,6 +32,6 @@ const Searchbox: FC<SearchboxProps> = ({ onSearch }) => {
       />
     </div>
   );
-};
+}
 
-export default Searchbox;
+export default React.memo(Searchbox);

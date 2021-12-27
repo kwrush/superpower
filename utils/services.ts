@@ -17,7 +17,7 @@ export const searchByName = async (name: string) => {
       response: 'success',
       'results-for': name,
       results: [],
-    };
+    } as SearchNameAPI;
   }
 
   return data;

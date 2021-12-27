@@ -1,6 +1,6 @@
-import create from 'zustand';
 import { Hero } from 'types/app.types';
 import request from 'utils/request';
+import create from 'zustand';
 
 interface ProfileStore {
   profile?: Hero;

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getHero } from '../../../utils/services';
+import { getHero } from 'utils/services';
 
 export default async function handler(
   req: NextApiRequest,

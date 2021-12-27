@@ -1,7 +1,6 @@
-import { FC } from 'react';
 import { PowerStatsAPI } from '../../types/api.types';
-import PowerRadar, { Powers } from '../power-radar';
 import Avatar from '../avatar';
+import PowerRadar, { Powers } from '../power-radar';
 import styles from './styles.module.css';
 
 interface PowerSummaryProps {
@@ -10,7 +9,11 @@ interface PowerSummaryProps {
   powers: PowerStatsAPI;
 }
 
-const PowerSummary: FC<PowerSummaryProps> = ({ name, avatar, powers }) => {
+export default function PowerSummary({
+  name,
+  avatar,
+  powers,
+}: PowerSummaryProps) {
   const captions = Object.entries(powers).map(
     ([power, value]) => `${power}(${value})`,
   );
@@ -32,6 +35,4 @@ const PowerSummary: FC<PowerSummaryProps> = ({ name, avatar, powers }) => {
       </PowerRadar>
     </section>
   );
-};
-
-export default PowerSummary;
+}

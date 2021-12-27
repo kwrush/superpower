@@ -1,31 +1,46 @@
 import { FC, useEffect } from 'react';
 import Head from 'next/head';
-import { Hero } from '../types/app.types';
+import Battle from 'components/battle';
 import Header from 'components/header';
 import Loader from 'components/loader';
-import SearchResults from 'components/search-results';
-import Battle from 'components/battle';
 import NoResult from 'components/no-result';
+import SearchResults from 'components/search-results';
 import Searchbox from 'components/searchbox';
-import useSearch from 'hooks/use-search';
-import useProfile from 'hooks/use-profile';
-import { randomBattle } from '../utils/services';
 import useBattle from 'hooks/use-battle';
+import useProfile from 'hooks/use-profile';
+import useSearch from 'hooks/use-search';
+import { Hero } from 'types/app.types';
+import { randomBattle } from 'utils/services';
 
-const Home = () => {
+interface HomeProps {
+  battle: Hero[];
+}
+
+export async function getStaticProps() {
+  const data = await randomBattle();
+  return {
+    props: { battle: data.map(({ response, ...profile }) => profile) },
+    // update in 24 hours
+    revalidate: 86400,
+  };
+}
+
+export default function Home({ battle }: HomeProps) {
   const { results, search, loading } = useSearch();
   const { setProfile } = useProfile();
-  const { battle, createBattle, addToBattle } = useBattle();
+  const {
+    battle: cachedBattle,
+    createBattle,
+    addToBattle,
+    setBattle,
+  } = useBattle();
   const showResults = !loading && results;
 
   useEffect(() => {
-    const initBattle = async () => {
-      if (!battle) {
-        await createBattle();
-      }
-    };
-    initBattle();
-  }, [battle, createBattle]);
+    if (cachedBattle == null) {
+      setBattle(battle);
+    }
+  }, [battle, cachedBattle, setBattle]);
 
   return (
     <div>
@@ -47,10 +62,10 @@ const Home = () => {
           ) : (
             <NoResult />
           ))}
-        {battle && <Battle battle={battle} refresh={createBattle} />}
+        {cachedBattle && (
+          <Battle battle={cachedBattle} refresh={createBattle} />
+        )}
       </div>
     </div>
   );
-};
-
-export default Home;
+}

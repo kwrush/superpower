@@ -1,7 +1,7 @@
-import { FC, ReactElement } from 'react';
-import styles from './styles.module.css';
-import Scales from './scales';
+import { PropsWithChildren, ReactElement } from 'react';
 import Axes from './axes';
+import Scales from './scales';
+import styles from './styles.module.css';
 
 interface PowerRadarProps {
   captions: string[];
@@ -11,11 +11,11 @@ interface PowerRadarProps {
   children: (cx: number, cy: number, size: number) => ReactElement;
 }
 
-const PowerRadar: FC<PowerRadarProps> = ({
+export default function PowerRadar({
   captions,
   scalesNumber = 5,
   children,
-}) => {
+}: PropsWithChildren<PowerRadarProps>) {
   const cx = 160;
   const cy = 120;
   const radius = 80;
@@ -48,6 +48,4 @@ const PowerRadar: FC<PowerRadarProps> = ({
       </svg>
     </div>
   );
-};
-
-export default PowerRadar;
+}
