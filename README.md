@@ -1,4 +1,4 @@
-# [Superpower](superpower-q65xb2zt5-kwrush.vercel.app)
+# [Superpower](https://superpower-kwrush.vercel.app)
 
 🦸‍♂️ A tiny app for information of superhero and supervillain, simple and just for fun.
 
@@ -10,7 +10,7 @@ API is powered by [SuperheroAPI](https://superheroapi.com/).
 git clone https://github.com/kwrush/superpower.git
 cd superpower
 touch .env.local
-echo "ACCESS_TOKEN=<Your access token>" > .env.local
+echo "ACCESS_TOKEN=<Your access token>" >> .env.local
 npm install
 npm run dev
 
