@@ -12,7 +12,7 @@ interface AvatarProps {
 export default function Avatar({ size = 'm', src, alt = '' }: AvatarProps) {
   const classes = classNames(styles.avatar, styles[`avatar-${size}`]);
   return (
-    <figure className={classes}>
+    <div className={classes}>
       <Image
         className={styles.image}
         src={src}
@@ -20,6 +20,6 @@ export default function Avatar({ size = 'm', src, alt = '' }: AvatarProps) {
         width={240}
         height={320}
       />
-    </figure>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head';
 import Battle from 'components/battle';
+import Container from 'components/container';
 import Header from 'components/header';
 import Loader from 'components/loader';
 import NoResult from 'components/no-result';
@@ -11,6 +12,7 @@ import useProfile from 'hooks/use-profile';
 import useSearch from 'hooks/use-search';
 import { Hero } from 'types/app.types';
 import { randomBattle } from 'utils/services';
+import styles from '../styles/home.module.css';
 
 interface HomeProps {
   battle: Hero[];
@@ -43,29 +45,31 @@ export default function Home({ battle }: HomeProps) {
   }, [battle, cachedBattle, setBattle]);
 
   return (
-    <div>
+    <>
       <Head>
         <title>Superpower</title>
         <link rel="icon" href="/superman-logo.svg" />
       </Head>
-      <div>
+      <Container>
         <Header />
         <Searchbox onSearch={search} />
-        {loading && <Loader />}
-        {showResults &&
-          (results!.length > 0 ? (
-            <SearchResults
-              results={results!}
-              checkProfile={setProfile}
-              addToBattle={addToBattle}
-            />
-          ) : (
-            <NoResult />
-          ))}
+        <div className={styles['search-results']}>
+          {loading && <Loader />}
+          {showResults &&
+            (results!.length > 0 ? (
+              <SearchResults
+                results={results!}
+                checkProfile={setProfile}
+                addToBattle={addToBattle}
+              />
+            ) : (
+              <NoResult />
+            ))}
+        </div>
         {cachedBattle && (
           <Battle battle={cachedBattle} refresh={createBattle} />
         )}
-      </div>
-    </div>
+      </Container>
+    </>
   );
 }

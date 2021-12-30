@@ -9,8 +9,8 @@ export default function Loader() {
         className={styles.logo}
         src={supermanLogo}
         alt="logo"
-        width={80}
-        height={80}
+        width={64}
+        height={64}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 .avatar {
   display: flex;
-  margin: 0;
+  justify-content: center;
 }
 
 .avatar-s {
@@ -8,11 +8,11 @@
 }
 
 .avatar-m {
-  width: 120px;
+  width: 96px;
 }
 
 .avatar-l {
-  width: 160px;
+  width: 120px;
 }
 
 .image {
