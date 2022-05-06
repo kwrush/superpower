@@ -1,10 +1,9 @@
 .result {
   margin: 0 auto;
-  padding: 1rem;
   display: flex;
-  justify-content: center;
   flex-flow: column nowrap;
   align-items: center;
+  width: 100%;
 }
 
 .result-list {
@@ -28,6 +27,16 @@
   display: flex;
   align-items: center;
   flex-grow: 1;
+}
+
+.name {
+  display: block;
+  margin-left: 8px;
+  color: #cccccc;
+}
+
+.name:hover {
+  color: white;
 }
 
 .button {

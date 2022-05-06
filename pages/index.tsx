@@ -53,10 +53,10 @@ export default function Home({ battle }: HomeProps) {
       <Container>
         <Header />
         <Searchbox onSearch={search} />
-        <div className={styles['search-results']}>
-          {loading && <Loader />}
-          {showResults &&
-            (results!.length > 0 ? (
+        {loading && <Loader />}
+        {showResults && (
+          <div className={styles['search-results']}>
+            {results!.length > 0 ? (
               <SearchResults
                 results={results!}
                 checkProfile={setProfile}
@@ -64,8 +64,9 @@ export default function Home({ battle }: HomeProps) {
               />
             ) : (
               <NoResult />
-            ))}
-        </div>
+            )}
+          </div>
+        )}
         {cachedBattle && (
           <Battle battle={cachedBattle} refresh={createBattle} />
         )}

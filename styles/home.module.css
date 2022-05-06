@@ -1,4 +1,9 @@
 .search-results {
+  position: relative;
   max-height: 240px;
+  max-width: 576px;
   overflow: scroll;
+  display: flex;
+  justify-content: center;
+  margin: 8px auto;
 }

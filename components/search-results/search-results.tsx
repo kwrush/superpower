@@ -27,7 +27,7 @@ export default function SearchResults({
                 }}
               >
                 <Avatar src={result.image.url} alt={result.name} size="s" />
-                <span>{result.name}</span>
+                <span className={styles.name}>{result.name}</span>
               </a>
             </Link>
             <div
