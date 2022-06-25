@@ -11,8 +11,8 @@ git clone https://github.com/kwrush/superpower.git
 cd superpower
 touch .env.local
 echo "ACCESS_TOKEN=<Your access token>" >> .env.local
-npm install
+npm ci
 npm run dev
-
-# open http://localhost:3000
 ```
+
+open http://localhost:3000
