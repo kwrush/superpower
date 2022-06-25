@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Container from 'components/container';
@@ -11,7 +11,7 @@ import useBattle from 'hooks/use-battle';
 import styles from 'styles/battle.module.css';
 
 export default function Battle() {
-  const { battle, loading, fetchBattle } = useBattle();
+  const { battle, fetchBattle, loading } = useBattle();
   const router = useRouter();
   const { slug } = router.query;
 
@@ -25,7 +25,7 @@ export default function Battle() {
     verfiyBattle();
   }, [slug, fetchBattle, battle]);
 
-  const arenaContent = () => {
+  const arenaContent = useMemo(() => {
     if (battle) {
       const [player, opponent] = battle;
       const playerColor = '#395abd';
@@ -81,7 +81,7 @@ export default function Battle() {
     }
 
     return <NoResult />;
-  };
+  }, [battle]);
 
-  return <Container>{loading ? <Loader /> : arenaContent()}</Container>;
+  return <Container>{loading ? <Loader /> : arenaContent}</Container>;
 }
