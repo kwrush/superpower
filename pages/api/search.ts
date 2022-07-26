@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method !== 'GET') {
-    return res.status(404).json({ message: 'No API found' });
+    return res.status(405).end();
   }
 
   const { name } = req.query;

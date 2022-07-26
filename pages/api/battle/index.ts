@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method !== 'GET') {
-    return res.status(404).end();
+    return res.status(405).end();
   }
 
   const { ids } = req.query;
